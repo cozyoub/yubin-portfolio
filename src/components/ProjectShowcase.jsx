@@ -39,9 +39,14 @@ const ProjectShowcase = () => {
                 <p className="project-showcase__desc">{project.shortDescription}</p>
 
                 <div className="project-showcase__tags">
-                  {project.tech.map((tag, i) => (
-                    <span key={i} className="project-showcase__tag">{tag}</span>
-                  ))}
+                  {/* tags 문자열을 파싱해서 더 다양한 태그 표시 */}
+                  {project.tags
+                    .split('#')
+                    .filter(tag => tag.trim())
+                    .slice(0, 5)
+                    .map((tag, i) => (
+                      <span key={i} className="project-showcase__tag">{tag.trim()}</span>
+                    ))}
                 </div>
               </div>
 

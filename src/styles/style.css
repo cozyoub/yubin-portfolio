@@ -511,7 +511,7 @@ section.main__wrap p{
 }
 .about__inner, .work__inner, .product__inner,  .skills__inner,
 .overview__inner, .project-page__inner, .project-sub__inner{
-    padding: 5vw 8vw;
+    padding: 8vw;
     height: 100%;
     z-index: 1; position: relative;
 }
@@ -1343,10 +1343,29 @@ content: "";
 
 /* ========== PROJECT SHOWCASE (메인 페이지) ========== */
 .project-showcase {
-    background: #111;
-    color: #fff;
+    background: var(--showcase-bg, #f5f5f7);
+    color: var(--showcase-text, #111);
     position: relative;
     overflow: hidden;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+body.dark-mode .project-showcase {
+    --showcase-bg: #0a0a0a;
+    --showcase-text: #fff;
+    --showcase-text-secondary: #e5e5e5;
+    --showcase-text-muted: #9ca3af;
+    --showcase-border: rgba(255, 255, 255, 0.1);
+    --showcase-tag-bg: rgba(255, 255, 255, 0.05);
+    --showcase-tag-border: rgba(255, 255, 255, 0.1);
+}
+body.light-mode .project-showcase {
+    --showcase-bg: #f5f5f7;
+    --showcase-text: #111;
+    --showcase-text-secondary: #333;
+    --showcase-text-muted: #666;
+    --showcase-border: rgba(0, 0, 0, 0.1);
+    --showcase-tag-bg: rgba(0, 0, 0, 0.05);
+    --showcase-tag-border: rgba(0, 0, 0, 0.1);
 }
 .project-showcase::before {
     content: "";
@@ -1369,12 +1388,12 @@ content: "";
     font-family: "Exo 2", sans-serif;
     font-size: clamp(3rem, 6vw, 5rem);
     font-weight: 600;
-    color: #fff;
+    color: var(--showcase-text, #111);
     margin-bottom: 1.5rem;
 }
 .project-showcase__subtitle {
     font-size: clamp(1.4rem, 2vw, 1.8rem);
-    color: #9ca3af;
+    color: var(--showcase-text-muted, #666);
     max-width: 600px;
 }
 
@@ -1414,17 +1433,17 @@ content: "";
 .project-showcase__number {
     font-size: 1rem;
     font-family: monospace;
-    color: #6b7280;
+    color: var(--showcase-text-muted, #6b7280);
 }
 .project-showcase__divider {
     width: 3rem;
     height: 1px;
-    background: #374151;
+    background: var(--showcase-border, #374151);
 }
 .project-showcase__info {
     font-size: 1rem;
     font-family: monospace;
-    color: #6b7280;
+    color: var(--showcase-text-muted, #6b7280);
     text-transform: uppercase;
     letter-spacing: 0.1em;
 }
@@ -1433,15 +1452,11 @@ content: "";
     font-family: "Exo 2", sans-serif;
     font-size: clamp(2.8rem, 5vw, 4.5rem);
     font-weight: 300;
-    color: #fff;
+    color: var(--showcase-text, #111);
     line-height: 0.95;
     letter-spacing: -0.02em;
     margin-bottom: 2rem;
-    mix-blend-mode: screen;
-    transition: mix-blend-mode 0.5s;
-}
-.project-showcase__item:hover .project-showcase__title {
-    mix-blend-mode: normal;
+    transition: color 0.3s ease;
 }
 .project-showcase__title-word {
     display: block;
@@ -1453,10 +1468,10 @@ content: "";
 
 .project-showcase__desc {
     font-size: clamp(1.2rem, 1.4vw, 1.5rem);
-    color: #9ca3af;
+    color: var(--showcase-text-muted, #666);
     line-height: 1.6;
     max-width: 400px;
-    border-left: 1px solid rgba(255, 255, 255, 0.1);
+    border-left: 1px solid var(--showcase-border, rgba(0, 0, 0, 0.1));
     padding-left: 1.5rem;
     margin-bottom: 2rem;
 }
@@ -1472,15 +1487,15 @@ content: "";
     font-size: 1rem;
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    color: #d1d5db;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--showcase-text-muted, #666);
+    background: var(--showcase-tag-bg, rgba(0, 0, 0, 0.05));
+    border: 1px solid var(--showcase-tag-border, rgba(0, 0, 0, 0.1));
     backdrop-filter: blur(10px);
     transition: all 0.3s;
 }
 .project-showcase__item:hover .project-showcase__tag {
-    color: #fff;
-    border-color: rgba(255, 255, 255, 0.2);
+    color: var(--showcase-text, #111);
+    border-color: var(--showcase-border, rgba(0, 0, 0, 0.2));
 }
 
 .project-showcase__image-wrap {
@@ -1586,16 +1601,16 @@ content: "";
     padding: 1.5rem 3rem;
     font-size: 1.5rem;
     font-weight: 500;
-    color: #fff;
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: var(--showcase-text, #111);
+    border: 1px solid var(--showcase-border, rgba(0, 0, 0, 0.3));
     border-radius: 50px;
     text-decoration: none;
     transition: all 0.3s;
 }
 .project-showcase__more-btn:hover {
-    background: #fff;
-    color: #111;
-    border-color: #fff;
+    background: var(--showcase-text, #111);
+    color: var(--showcase-bg, #f5f5f7);
+    border-color: var(--showcase-text, #111);
 }
 
 /* Project Showcase 반응형 */
@@ -1676,7 +1691,8 @@ content: "";
 /* ========== PROJECT PAGE (MY PROJECT + 필터) ========== */
 .project-page {
     min-height: 100vh;
-    background: #f4f4f8;
+    background: var(--bg-primary, #f4f4f8);
+    transition: background 0.3s ease;
 }
 .project-page__main {
     padding-top: 72px;
@@ -1690,6 +1706,8 @@ content: "";
     align-items: center;
     gap: 0.5rem;
     font-size: 100px;
+    color: var(--text-primary, #111);
+    transition: color 0.3s ease;
 }
 .project-page__title-icon {
     font-size: 0.85em;
@@ -1697,14 +1715,16 @@ content: "";
 .project-page__desc {
     font-size: 24px;
     line-height: 1.6;
-    color: #343434;
+    color: var(--text-secondary, #343434);
     margin-bottom: 2.5rem;
+    transition: color 0.3s ease;
 }
 .project-page__divider {
     border: none;
     height: 1px;
-    background: #ddd;
+    background: var(--border-color, #ddd);
     margin: 1.5rem 0;
+    transition: background 0.3s ease;
 }
 .project-page__filter-row {
     display: flex;
@@ -1715,8 +1735,9 @@ content: "";
 }
 .project-page__filter-row.type{
 padding: 30px 0;
-    border-top: 1px solid #000;
-    border-bottom: 1px solid #000;
+    border-top: 1px solid var(--text-primary, #000);
+    border-bottom: 1px solid var(--text-primary, #000);
+    transition: border-color 0.3s ease;
 }
 .project-page__filter-row.stack{
     margin: 30px 0;
@@ -1747,9 +1768,10 @@ padding: 30px 0;
 .project-page__filter-indicator {
     width: 14px;
     height: 14px;
-    border: 2px solid #333;
+    border: 2px solid var(--text-primary, #333);
     background: transparent;
     flex-shrink: 0;
+    transition: border-color 0.3s ease;
 }
 .project-page__filter-item:first-child .project-page__filter-indicator {
     border-radius: 2px;
@@ -1761,7 +1783,8 @@ padding: 30px 0;
     border-radius: 50%;
 }
 .project-page__filter-indicator.is-active {
-    background: #111;
+    background: var(--text-primary, #111);
+    transition: background 0.3s ease;
 }
 .project-page__filter-tags {
     display: flex;
@@ -1773,14 +1796,18 @@ padding: 30px 0;
     font-size: 1.4rem;
     font-weight: 600;
     font-family: "Exo 2", sans-serif;
-    border: 1px solid #ccc;
-    background: #fff;
+    border: 1px solid var(--border-color, #ccc);
+    background: var(--bg-card, #fff);
     border-radius: var(--default-radius-small);
     cursor: pointer;
-    color: #333;
-    transition: background 0.2s, border-color 0.2s, color 0.2s;
+    color: var(--text-primary, #333);
+    transition: background 0.3s ease, border-color 0.3s ease, color 0.3s ease;
 }
-.project-page__filter-item span{font-size: 17px;}
+.project-page__filter-item span{
+    font-size: 17px;
+    color: var(--text-primary, #333);
+    transition: color 0.3s ease;
+}
 .project-page__filter-tag:hover {
     border-color: var(--main-color-pink);
     color: var(--main-color-pink);
@@ -1823,9 +1850,10 @@ padding: 30px 0;
 /* 이미지 박스 (위쪽 영역) */
 .project-page__card-img-box {
     aspect-ratio: 16/10;
-    background: #eee;
+    background: var(--bg-tertiary, #eee);
     overflow: hidden;
     flex-shrink: 0;
+    transition: background 0.3s ease;
 }
 .project-page__card-img {
     width: 100%;
@@ -1845,13 +1873,16 @@ padding: 30px 0;
     font-size: 20px;
     font-weight: bold;
     margin: 0 0 0.6rem;
+    color: var(--text-primary, #111);
+    transition: color 0.3s ease;
 }
 .project-page__card-desc {
     font-size: 1.4rem;
-    color: var(--sub-font-color);
+    color: var(--text-secondary, var(--sub-font-color));
     margin: 0 0 1rem;
     line-height: 1.5;
     flex: 1;
+    transition: color 0.3s ease;
 }
 .project-page__card-arrow {
     display: inline-block;
@@ -1873,7 +1904,8 @@ padding: 30px 0;
 .project-page__empty {
     margin-top: 3rem;
     font-size: 1.6rem;
-    color: var(--sub-font-color);
+    color: var(--text-muted, var(--sub-font-color));
+    transition: color 0.3s ease;
 }
 
 /* Work 페이지는 Project와 동일한 project-page 클래스 사용 → 수정하신 project-page CSS가 그대로 적용됩니다 */
@@ -1881,7 +1913,8 @@ padding: 30px 0;
 /* ========== PROJECT SUB LAYOUT (상세/서브 페이지) ========== */
 .project-sub {
     min-height: 100vh;
-    background: #f4f4f8;
+    background: var(--bg-primary, #f4f4f8);
+    transition: background 0.3s ease;
 }
 .project-sub__main{position: relative;}
 .project-page,.project-sub{position: relative;}
@@ -1908,12 +1941,12 @@ padding: 30px 0;
     align-items: center;
     gap: 0.5rem;
     font-size: 2rem;
-    color: #111;
+    color: var(--text-primary, #111);
     text-decoration: none;
     margin-bottom: 2rem;
     font-weight: 600;
     font-family: "Exo 2", sans-serif;
-    transition: color 0.2s;
+    transition: color 0.3s ease;
 }
 .project-sub__back:hover {
     color: var(--main-color-pink);
@@ -1926,19 +1959,23 @@ padding: 30px 0;
     font-size: clamp(2.8rem, 4vw, 3.6rem);
     font-weight: bold;
     margin-bottom: 2rem;
+    color: var(--text-primary, #111);
+    transition: color 0.3s ease;
 }
 .project-sub__desc-block {
-    background: #fff;
+    background: var(--bg-card, #fff);
     border-radius: var(--default-radius);
     padding: 2rem 2.5rem;
     margin-bottom: 3rem;
+    transition: background 0.3s ease;
 }
 .project-sub__desc-text {
     font-size: 18px;
     line-height: 1.7;
-    color: #333;
+    color: var(--text-secondary, #333);
     margin: 0;
     font-family: "Exo 2", sans-serif;
+    transition: color 0.3s ease;
 }
 .project-sub__desc-text p {
     margin-bottom: 1rem;
@@ -1951,13 +1988,16 @@ padding: 30px 0;
 .project-sub__info {
     margin-top: 3rem;
     padding-top: 2rem;
-    border-top: 1px solid #ddd;
+    border-top: 1px solid var(--border-color, #ddd);
+    transition: border-color 0.3s ease;
 }
 .project-sub__info-title {
     font-family: "Exo 2", sans-serif;
     font-size: 3rem;
     font-weight: bold;
     margin-bottom: 1.5rem;
+    color: var(--text-primary, #111);
+    transition: color 0.3s ease;
 }
 .project-sub__info-list {
     margin: 0;
@@ -1965,8 +2005,9 @@ padding: 30px 0;
     flex-direction: column;
     gap: 2rem;
     padding: 30px;
-    background: #fff;
-        border-radius: var(--default-radius);
+    background: var(--bg-card, #fff);
+    border-radius: var(--default-radius);
+    transition: background 0.3s ease;
 }
 .project-sub__info-item {
     display: grid;
@@ -1978,15 +2019,17 @@ padding: 30px 0;
     margin: 0;
     font-size: 20px;
     font-weight: bold;
-    color: #333;
+    color: var(--text-primary, #333);
     font-family: "Exo 2", sans-serif;
+    transition: color 0.3s ease;
 }
 .project-sub__info-dd {
     margin: 0;
     font-size: 20px;
     line-height: 1.5;
-    color: #333;
+    color: var(--text-secondary, #333);
     font-family: "Exo 2", sans-serif;
+    transition: color 0.3s ease;
 }
 .project-sub__info-ul {
     margin: 0;
@@ -2121,13 +2164,16 @@ padding: 30px 0;
 .project-sub__pdfs {
     margin-top: 3rem;
     padding-top: 2rem;
-    border-top: 1px solid #ddd;
+    border-top: 1px solid var(--border-color, #ddd);
+    transition: border-color 0.3s ease;
 }
 .project-sub__pdfs-title {
     font-family: "Exo 2", sans-serif;
     font-size: 3rem;
     font-weight: bold;
     margin-bottom: 2rem;
+    color: var(--text-primary, #111);
+    transition: color 0.3s ease;
 }
 .project-sub__pdfs-list {
     list-style: none;
@@ -2145,17 +2191,17 @@ padding: 30px 0;
     align-items: center;
     gap: 0.5rem;
     padding: 1rem 1.5rem;
-    background: #f5f5f5;
-    color: #333;
+    background: var(--bg-tertiary, #f5f5f5);
+    color: var(--text-primary, #333);
     font-size: 1.6rem;
     font-weight: 500;
     text-decoration: none;
     border-radius: var(--default-radius-small);
-    border: 1px solid #e0e0e0;
-    transition: background 0.2s, border-color 0.2s, color 0.2s;
+    border: 1px solid var(--border-color, #e0e0e0);
+    transition: background 0.3s ease, border-color 0.3s ease, color 0.3s ease;
 }
 .project-sub__pdf-link:hover {
-    background: #eee;
+    background: var(--bg-secondary, #eee);
     border-color: var(--main-color-pink);
     color: var(--main-color-pink);
 }
@@ -2168,13 +2214,16 @@ padding: 30px 0;
 .project-sub__videos {
     margin-top: 3rem;
     padding-top: 2rem;
-    border-top: 1px solid #ddd;
+    border-top: 1px solid var(--border-color, #ddd);
+    transition: border-color 0.3s ease;
 }
 .project-sub__videos-title {
     font-family: "Exo 2", sans-serif;
     font-size: 3rem;
     font-weight: bold;
     margin-bottom: 2rem;
+    color: var(--text-primary, #111);
+    transition: color 0.3s ease;
 }
 .project-sub__videos-grid {
     display: grid;
@@ -2182,17 +2231,19 @@ padding: 30px 0;
     gap: 2rem;
 }
 .project-sub__video-item {
-    background: #fff;
+    background: var(--bg-card, #fff);
     border-radius: var(--default-radius);
     padding: 1.5rem;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: background 0.3s ease;
 }
 .project-sub__video-title {
     font-family: "Exo 2", sans-serif;
     font-size: 1.8rem;
     font-weight: 600;
     margin-bottom: 1rem;
-    color: #333;
+    color: var(--text-primary, #333);
+    transition: color 0.3s ease;
 }
 .project-sub__video-wrapper {
     position: relative;
@@ -2240,5 +2291,135 @@ padding: 30px 0;
 @media (max-width: 768px) {
     .project-sub__videos-grid {
         grid-template-columns: 1fr;
+    }
+}
+
+/* ========== 주요 기능 (coreFlows / features) ========== */
+.project-sub__flows {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border-color, #ddd);
+    transition: border-color 0.3s ease;
+}
+.project-sub__flows-title {
+    font-family: "Exo 2", sans-serif;
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 2rem;
+    color: var(--text-primary, #111);
+    transition: color 0.3s ease;
+}
+.project-sub__flows-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+.project-sub__flow-item {
+    background: var(--bg-card, #fff);
+    border-radius: 16px;
+    padding: 2.5rem;
+    transition: all 0.3s ease;
+}
+.project-sub__flow-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+}
+.project-sub__flow-title {
+    font-family: "Exo 2", sans-serif;
+    font-size: 1.9rem;
+    font-weight: 700;
+    color: var(--text-primary, #222);
+    margin-bottom: 1.5rem;
+    transition: color 0.3s ease;
+}
+.project-sub__flow-steps {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.project-sub__flow-steps li {
+    font-size: 1.55rem;
+    line-height: 1.8;
+    color: var(--text-secondary, #555);
+    padding: 0.8rem 0;
+    border-bottom: 1px solid var(--border-color, #f0f0f0);
+    transition: color 0.3s ease, border-color 0.3s ease;
+}
+.project-sub__flow-steps li:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+/* ========== 기술적 고민과 해결 (keyLogic / challenges) ========== */
+.project-sub__logic {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border-color, #ddd);
+    transition: border-color 0.3s ease;
+}
+.project-sub__logic-title {
+    font-family: "Exo 2", sans-serif;
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 2rem;
+    color: var(--text-primary, #111);
+    transition: color 0.3s ease;
+}
+.project-sub__logic-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+.project-sub__logic-item {
+    background: var(--bg-card, #fff);
+    border-radius: 16px;
+    padding: 2.5rem;
+    transition: all 0.3s ease;
+}
+.project-sub__logic-item:hover {
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+}
+.project-sub__logic-label {
+    display: block;
+    font-family: "Exo 2", sans-serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--text-primary, #222);
+    margin-bottom: 1rem;
+    transition: color 0.3s ease;
+}
+.project-sub__logic-content {
+    font-size: 1.55rem;
+    line-height: 1.8;
+    color: var(--text-secondary, #555);
+    margin: 0;
+    transition: color 0.3s ease;
+}
+
+/* 반응형 - 주요 기능 & 기술적 고민 */
+@media (max-width: 768px) {
+    .project-sub__flows-title,
+    .project-sub__logic-title {
+        font-size: 2.4rem;
+    }
+    .project-sub__flows-grid {
+        grid-template-columns: 1fr;
+    }
+    .project-sub__flow-item,
+    .project-sub__logic-item {
+        padding: 2rem;
+    }
+    .project-sub__flow-title {
+        font-size: 1.7rem;
+    }
+    .project-sub__logic-label {
+        font-size: 1.5rem;
+    }
+    .project-sub__flow-steps li,
+    .project-sub__logic-content {
+        font-size: 1.45rem;
     }
 }

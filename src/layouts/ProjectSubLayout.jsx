@@ -2,8 +2,8 @@ import { Link } from 'react-router-dom';
 
 /**
  * 프로젝트/작업 상세(서브) 페이지 공통 레이아웃
- * - coreFlows: { title, steps[] } 핵심 플로우 3~5개
- * - keyLogic: { title, content } 로직 설명 3~5개
+ * - coreFlows: { title, steps[] } 주요 기능 (features에서 변환)
+ * - keyLogic: { title, content } 기술적 고민과 해결 (challenges에서 변환)
  */
 function ProjectSubLayout({
   title,
@@ -84,7 +84,7 @@ function ProjectSubLayout({
 
           {coreFlows.length > 0 && (
             <section className="project-sub__flows">
-              <h2 className="project-sub__flows-title">핵심 플로우</h2>
+              <h2 className="project-sub__flows-title">주요 기능</h2>
               <div className="project-sub__flows-grid">
                 {coreFlows.map((flow, i) => (
                   <div key={i} className="project-sub__flow-item">
@@ -102,7 +102,7 @@ function ProjectSubLayout({
 
           {keyLogic.length > 0 && (
             <section className="project-sub__logic">
-              <h2 className="project-sub__logic-title">로직 설명</h2>
+              <h2 className="project-sub__logic-title">기술적 고민과 해결</h2>
               <ul className="project-sub__logic-list">
                 {keyLogic.map((item, i) => (
                   <li key={i} className="project-sub__logic-item">

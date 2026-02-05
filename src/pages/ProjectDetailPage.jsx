@@ -36,27 +36,24 @@ function buildLinkInfo(project) {
   if (project.teamSize != null && project.teamSize !== '') {
     list.push({ label: '팀원', value: `${project.teamSize}명` });
   }
-  if (project.contribution) {
-    list.push({ label: '기여도', value: project.contribution });
-  }
-  if (project.features) {
-    list.push({ label: '주요 기능', value: project.features });
-  }
+  
+  // techStack이 객체인 경우 처리
   if (project.techStack) {
-    list.push({ label: '주요 기술', value: project.techStack });
+    if (typeof project.techStack === 'object') {
+      if (project.techStack.frontend) {
+        list.push({ label: 'Frontend', value: project.techStack.frontend });
+      }
+      if (project.techStack.backend) {
+        list.push({ label: 'Backend', value: project.techStack.backend });
+      }
+      if (project.techStack.tools) {
+        list.push({ label: 'Tools', value: project.techStack.tools });
+      }
+    } else {
+      list.push({ label: '주요 기술', value: project.techStack });
+    }
   }
-  if (project.backendTech) {
-    list.push({ label: 'Backend', value: project.backendTech });
-  }
-  if (project.frontendTech) {
-    list.push({ label: 'Frontend', value: project.frontendTech });
-  }
-  if (project.collaborationTech) {
-    list.push({ label: 'Collaboration', value: project.collaborationTech });
-  }
-  if (project.role) {
-    list.push({ label: '주요 역할', value: project.role });
-  }
+  
   if (project.responsibilities?.length) {
     list.push({ label: '담당 업무', value: project.responsibilities });
   }
@@ -142,12 +139,24 @@ function ProjectDetailPage() {
     );
   }
 
-  const description = project.detailDescription ?? content?.description ?? project.shortDescription;
+  const description = project.description ?? project.detailDescription ?? content?.description ?? project.shortDescription;
   const linkInfo = buildLinkInfo(project);
   // videos: url이 있으면 YouTube 임베드 URL로 변환
   const videos = (project.videos || []).map(video => ({
     ...video,
     embedUrl: video.embedUrl || (video.url && convertYouTubeToEmbed(video.url)) || undefined
+  }));
+
+  // features를 coreFlows 형식으로 변환
+  const coreFlows = (project.features || project.coreFlows || []).map(f => ({
+    title: f.title,
+    steps: f.description ? [f.description] : f.steps || []
+  }));
+
+  // challenges를 keyLogic 형식으로 변환
+  const keyLogic = (project.challenges || project.keyLogic || []).map(c => ({
+    title: c.issue || c.title,
+    content: c.solution || c.content
   }));
 
   return (
@@ -157,8 +166,8 @@ function ProjectDetailPage() {
         title={project.title}
         description={description}
         linkInfo={linkInfo}
-        coreFlows={project.coreFlows || []}
-        keyLogic={project.keyLogic || []}
+        coreFlows={coreFlows}
+        keyLogic={keyLogic}
         pdfs={project.pdfs || []}
         videos={videos}
       />
