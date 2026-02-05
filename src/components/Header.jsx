@@ -4,7 +4,7 @@ import { useTheme } from '../context/ThemeContext';
 
 const GITHUB_URL = 'https://github.com/ubzzang';
 const CONTACT_EMAIL = 'cozyoub@gmail.com';
-const BLOG_URL = 'https://velog.io/@cozyoub';
+const BLOG_URL = 'https://cozyoub.github.io/yubin-portfolio';
 const BLOG_LABEL = 'velog.io/@cozyoub';
 
 // 아이콘 컴포넌트
@@ -62,11 +62,11 @@ const Header = () => {
               <span /><span /><span />
             </button>
             <div className="header-new__logo-icon" aria-hidden>
-              <a href="/">
+              <Link to="/">
                <svg width="28" height="28" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M16 2L18.5 12.5L28 15L18.5 17.5L16 28L13.5 17.5L4 15L13.5 12.5L16 2Z" fill="var(--main-color-pink)"/>
               </svg>
-              </a>
+              </Link>
             </div>
           </div>
           <div className="header-new__right">

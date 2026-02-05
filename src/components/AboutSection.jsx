@@ -99,8 +99,8 @@ const AboutSection = () => {
           <div data-aos="fade-up" data-aos-duration="500">
             <h3>CERTIFICATE</h3>
             <ul className="about__txt">
-              <li>정보처리기사</li>
-              <li>보통 2종 면허</li>
+              <li>정보처리기사 - 한국산업인력공단</li>
+              <li>보통 2종 면허 - 운전면허시험관리단</li>
             </ul>
           </div>
         </div>
