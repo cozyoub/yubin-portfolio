@@ -2,87 +2,49 @@ import { Link } from 'react-router-dom';
 import { projects } from '../constants/projects';
 
 const ProjectShowcase = () => {
-  // 메인에 표시할 프로젝트 (최대 3개)
   const showcaseProjects = projects.slice(0, 3);
 
   return (
-    <section className="project-showcase">
-      <div className="project-showcase__inner">
-        <div className="project-showcase__header">
-          <h2 data-aos="fade-in">Featured Projects</h2>
+    <section className="ke-section ke-section--projects">
+      <div className="ke-projects">
+        <div className="ke-projects__header">
+          <p className="ke-label" data-aos="fade-up" data-aos-duration="800">PROJECTS</p>
+          <h2 className="ke-title" data-aos="fade-up" data-aos-duration="800" data-aos-delay="100">
+            프로젝트
+          </h2>
         </div>
 
-        <div className="project-showcase__list">
+        <div className="ke-projects__list">
           {showcaseProjects.map((project, index) => (
             <Link
               to={`/project/${project.slug}`}
               key={project.id}
-              className="project-showcase__item group"
+              className="ke-project-item"
               data-aos="fade-up"
-              data-aos-delay={150 + index * 100}
+              data-aos-duration="800"
+              data-aos-delay={index * 100}
             >
-              <div className="project-showcase__content">
-                <div className="project-showcase__meta">
-                  <span className="project-showcase__number">NO. {String(index + 1).padStart(2, '0')}</span>
-                  <div className="project-showcase__divider"></div>
-                  <span className="project-showcase__info">
-                    {project.type === 'TEAM' ? '팀 프로젝트' : '1인 프로젝트'} · {project.period}
-                  </span>
-                </div>
-
-                <h3 className="project-showcase__title">
-                  {project.title.split(' ').map((word, i) => (
-                    <span key={i} className="project-showcase__title-word">{word}</span>
-                  ))}
-                </h3>
-
-                <p className="project-showcase__desc">{project.shortDescription}</p>
-
-                <div className="project-showcase__tags">
-                  {/* tags 문자열을 파싱해서 더 다양한 태그 표시 */}
-                  {project.tags
-                    .split('#')
-                    .filter(tag => tag.trim())
-                    .slice(0, 5)
-                    .map((tag, i) => (
-                      <span key={i} className="project-showcase__tag">{tag.trim()}</span>
-                    ))}
-                </div>
+              <div className="ke-project-item__img">
+                <img src={project.image} alt={project.title} />
               </div>
-
-              <div className="project-showcase__image-wrap">
-                <div className="project-showcase__image-bg">
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="project-showcase__image"
-                  />
-                </div>
-                <div className="project-showcase__image-overlay"></div>
-                <div className="project-showcase__cta">
-                  <span className="project-showcase__cta-text">Case Study</span>
-                  <div className="project-showcase__cta-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M7 7h10v10"></path>
-                      <path d="M7 17 17 7"></path>
-                    </svg>
-                  </div>
-                </div>
-                <div className="project-showcase__cta-mobile">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M7 7h10v10"></path>
-                    <path d="M7 17 17 7"></path>
-                  </svg>
-                </div>
+              <div className="ke-project-item__info">
+                <span className="ke-project-item__num">{String(index + 1).padStart(2, '0')}</span>
+                <h3 className="ke-project-item__title">{project.title}</h3>
+                <p className="ke-project-item__desc">{project.shortDescription}</p>
+                <span className="ke-project-item__type">
+                  {project.type === 'TEAM' ? 'Team Project' : 'Personal Project'}
+                </span>
               </div>
             </Link>
           ))}
         </div>
 
-        <div className="project-showcase__more" data-aos="fade-up">
-          <Link to="/project" className="project-showcase__more-btn">
-            모든 프로젝트 보기
-            <i className="fa-solid fa-arrow-right"></i>
+        <div className="ke-projects__cta" data-aos="fade-up" data-aos-duration="800">
+          <Link to="/project" className="ke-btn ke-btn--outline">
+            전체 프로젝트 보기
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
           </Link>
         </div>
       </div>

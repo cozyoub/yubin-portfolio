@@ -1,12 +1,695 @@
 @charset "UTF-8";
+
+/* ========== 카카오엔터프라이즈 스타일 변수 ========== */
+:root {
+    --ke-black: #000;
+    --ke-white: #fff;
+    --ke-yellow: #FEE500;
+    --ke-gray: #999;
+    --ke-gray-dark: #333;
+}
+
 html {
-    background: var(--bg-primary, #f4f4f8);
+    background: var(--ke-black);
     transition: background 0.3s ease;
+    scroll-behavior: smooth;
 }
 body {
-    background: var(--bg-primary, #f4f4f8);
-    color: var(--text-primary, #111);
+    background: var(--ke-black);
+    color: var(--ke-white);
     transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* 라이트모드일 때 */
+body.light-mode {
+    --ke-black: #fff;
+    --ke-white: #000;
+    --ke-gray: #666;
+    --ke-gray-dark: #999;
+}
+
+/* wrap 컨테이너 */
+.wrap {
+    background: var(--ke-black);
+    min-height: 100vh;
+}
+
+/* ========== 헤더 ========== */
+.ke-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    padding: 2rem 4vw;
+    transition: all 0.3s;
+}
+
+.ke-header--scrolled {
+    background: rgba(0, 0, 0, 0.9);
+    backdrop-filter: blur(10px);
+    padding: 1.5rem 4vw;
+}
+
+body.light-mode .ke-header--scrolled {
+    background: rgba(255, 255, 255, 0.9);
+}
+
+.ke-header__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1600px;
+    margin: 0 auto;
+}
+
+.ke-header__logo {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--ke-yellow);
+    text-decoration: none;
+    letter-spacing: 0.05em;
+}
+
+.ke-header__nav {
+    display: flex;
+    gap: 4rem;
+}
+
+.ke-header__link {
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: var(--ke-gray);
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    transition: color 0.3s;
+}
+
+.ke-header__link:hover {
+    color: var(--ke-white);
+}
+
+.ke-header__right {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.ke-header__theme {
+    background: none;
+    border: none;
+    font-size: 1.6rem;
+    cursor: pointer;
+    padding: 0.5rem;
+}
+
+.ke-header__github {
+    font-size: 1.3rem;
+    font-weight: 500;
+    color: var(--ke-black);
+    background: var(--ke-yellow);
+    padding: 0.8rem 1.6rem;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+.ke-header__github:hover {
+    background: #e6cf00;
+}
+
+.ke-header__menu-btn {
+    display: none;
+    flex-direction: column;
+    gap: 6px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+}
+
+.ke-header__menu-btn span {
+    width: 24px;
+    height: 2px;
+    background: var(--ke-white);
+}
+
+/* 모바일 메뉴 */
+.ke-menu {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    display: flex;
+}
+
+.ke-menu__backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.ke-menu__inner {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 400px;
+    margin-left: auto;
+    background: var(--ke-black);
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+}
+
+body.light-mode .ke-menu__inner {
+    background: #fff;
+}
+
+.ke-menu__close {
+    align-self: flex-end;
+    background: none;
+    border: none;
+    font-size: 2rem;
+    color: var(--ke-white);
+    cursor: pointer;
+    margin-bottom: 4rem;
+}
+
+.ke-menu__nav {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.ke-menu__link {
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--ke-white);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.ke-menu__link:hover {
+    color: var(--ke-yellow);
+}
+
+@media screen and (max-width: 768px) {
+    .ke-header__nav {
+        display: none;
+    }
+    
+    .ke-header__github {
+        display: none;
+    }
+    
+    .ke-header__menu-btn {
+        display: flex;
+    }
+}
+
+/* ========== 공통 섹션 스타일 ========== */
+.ke-section {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 10vh 8vw;
+    position: relative;
+}
+
+.ke-label {
+    font-size: 1.2rem;
+    font-weight: 600;
+    letter-spacing: 0.3em;
+    color: var(--ke-yellow);
+    margin-bottom: 2rem;
+}
+
+.ke-title {
+    font-family: "Pretendard Variable", sans-serif;
+    font-size: clamp(4rem, 8vw, 8rem);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    color: var(--ke-white);
+}
+
+.ke-title--large {
+    font-size: clamp(5rem, 12vw, 12rem);
+}
+
+.ke-accent {
+    color: var(--ke-yellow);
+}
+
+.ke-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.6rem 3.2rem;
+    background: var(--ke-yellow);
+    color: var(--ke-black);
+    font-size: 1.6rem;
+    font-weight: 600;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.ke-btn:hover {
+    transform: translateX(5px);
+}
+
+.ke-btn--ghost {
+    background: transparent;
+    color: var(--ke-white);
+    border: 1px solid var(--ke-gray);
+}
+
+.ke-btn--ghost:hover {
+    border-color: var(--ke-yellow);
+    color: var(--ke-yellow);
+}
+
+.ke-btn--outline {
+    background: transparent;
+    color: var(--ke-white);
+    border: 1px solid var(--ke-white);
+}
+
+.ke-btn--outline:hover {
+    background: var(--ke-white);
+    color: var(--ke-black);
+}
+
+.ke-btn--large {
+    padding: 2rem 4rem;
+    font-size: 1.8rem;
+}
+
+/* ========== 히어로 섹션 ========== */
+.ke-section--hero {
+    justify-content: flex-start;
+}
+
+.ke-hero {
+    max-width: 900px;
+}
+
+.ke-hero__title {
+    font-family: "Pretendard Variable", sans-serif;
+    font-size: clamp(5rem, 10vw, 10rem);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    margin-bottom: 3rem;
+}
+
+.ke-hero__line {
+    display: block;
+}
+
+.ke-hero__line--accent {
+    color: var(--ke-yellow);
+}
+
+.ke-hero__desc {
+    font-size: clamp(1.6rem, 2vw, 2rem);
+    line-height: 1.8;
+    color: var(--ke-gray);
+    margin-bottom: 0;
+}
+
+.ke-scroll {
+    position: absolute;
+    bottom: 5vh;
+    left: 8vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.ke-scroll span {
+    font-size: 1.1rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    color: var(--ke-gray);
+}
+
+.ke-scroll::after {
+    content: '';
+    width: 1px;
+    height: 60px;
+    background: linear-gradient(to bottom, var(--ke-yellow), transparent);
+    animation: scrollLine 2s ease-in-out infinite;
+}
+
+@keyframes scrollLine {
+    0%, 100% { opacity: 0.3; transform: scaleY(0.7); }
+    50% { opacity: 1; transform: scaleY(1); }
+}
+
+/* ========== About 섹션 ========== */
+.ke-section--about {
+    background: var(--ke-black);
+}
+
+.ke-about {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8rem;
+    width: 100%;
+    align-items: start;
+}
+
+.ke-about__right {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+}
+
+.ke-about__text {
+    font-size: clamp(1.6rem, 1.8vw, 2rem);
+    line-height: 1.9;
+    color: var(--ke-gray);
+    margin-bottom: 1.5rem;
+}
+
+.ke-about__stats {
+    display: flex;
+    gap: 6rem;
+}
+
+.ke-stat {
+    display: flex;
+    flex-direction: column;
+}
+
+.ke-stat__num {
+    font-size: clamp(4rem, 6vw, 6rem);
+    font-weight: 700;
+    color: var(--ke-yellow);
+    line-height: 1;
+}
+
+.ke-stat__label {
+    font-size: 1.3rem;
+    color: var(--ke-gray);
+    letter-spacing: 0.1em;
+    margin-top: 0.5rem;
+}
+
+.ke-about__cta {
+    display: flex;
+    gap: 1.5rem;
+}
+
+/* ========== Skills 섹션 ========== */
+.ke-section--skills {
+    background: var(--ke-black);
+}
+
+.ke-skills {
+    width: 100%;
+}
+
+.ke-skills__header {
+    margin-bottom: 6rem;
+}
+
+.ke-skills__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+}
+
+.ke-skill-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 3rem;
+    transition: all 0.3s;
+}
+
+.ke-skill-card:hover {
+    border-color: var(--ke-yellow);
+    background: rgba(254, 229, 0, 0.05);
+}
+
+.ke-skill-card__title {
+    font-size: 1.4rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    color: var(--ke-yellow);
+    margin-bottom: 2rem;
+}
+
+.ke-skill-card__list {
+    list-style: none;
+}
+
+.ke-skill-card__list li {
+    font-size: 1.8rem;
+    color: var(--ke-white);
+    padding: 0.8rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.ke-skill-card__list li:last-child {
+    border-bottom: none;
+}
+
+/* ========== Projects 섹션 ========== */
+.ke-section--projects {
+    background: var(--ke-black);
+}
+
+.ke-projects {
+    width: 100%;
+}
+
+.ke-projects__header {
+    margin-bottom: 6rem;
+}
+
+.ke-projects__list {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+    margin-bottom: 6rem;
+}
+
+.ke-project-item {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    text-decoration: none;
+    color: inherit;
+    padding: 3rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s;
+}
+
+.ke-project-item:hover {
+    padding-left: 2rem;
+}
+
+.ke-project-item:hover .ke-project-item__img img {
+    transform: scale(1.05);
+}
+
+.ke-project-item__img {
+    aspect-ratio: 16/10;
+    overflow: hidden;
+    background: #111;
+}
+
+.ke-project-item__img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(100%);
+    transition: all 0.5s;
+}
+
+.ke-project-item:hover .ke-project-item__img img {
+    filter: grayscale(0%);
+}
+
+.ke-project-item__info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+.ke-project-item__num {
+    font-size: 1.2rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    color: var(--ke-yellow);
+}
+
+.ke-project-item__title {
+    font-size: clamp(2.4rem, 4vw, 4rem);
+    font-weight: 700;
+    color: var(--ke-white);
+    line-height: 1.2;
+}
+
+.ke-project-item__desc {
+    font-size: 1.6rem;
+    color: var(--ke-gray);
+    line-height: 1.6;
+}
+
+.ke-project-item__type {
+    font-size: 1.2rem;
+    letter-spacing: 0.1em;
+    color: var(--ke-gray);
+}
+
+.ke-projects__cta {
+    text-align: center;
+}
+
+/* ========== Work 섹션 ========== */
+.ke-section--work {
+    background: var(--ke-yellow);
+    color: var(--ke-black);
+}
+
+.ke-section--work .ke-label {
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.ke-section--work .ke-title {
+    color: var(--ke-black);
+}
+
+.ke-work {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+.ke-work__desc {
+    font-size: clamp(1.8rem, 2.5vw, 2.4rem);
+    line-height: 1.7;
+    color: rgba(0, 0, 0, 0.7);
+}
+
+.ke-section--work .ke-btn {
+    background: var(--ke-black);
+    color: var(--ke-white);
+}
+
+.ke-section--work .ke-btn:hover {
+    background: #333;
+}
+
+/* ========== Contact 섹션 ========== */
+.ke-section--contact {
+    background: var(--ke-black);
+    text-align: center;
+    justify-content: center;
+}
+
+.ke-contact {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
+.ke-contact__email {
+    font-size: clamp(2rem, 4vw, 4rem);
+    font-weight: 500;
+    color: var(--ke-white);
+    text-decoration: none;
+    border-bottom: 2px solid transparent;
+    transition: all 0.3s;
+    margin-top: 2rem;
+}
+
+.ke-contact__email:hover {
+    color: var(--ke-yellow);
+    border-color: var(--ke-yellow);
+}
+
+.ke-contact__links {
+    display: flex;
+    gap: 3rem;
+    margin-top: 3rem;
+}
+
+.ke-contact__link {
+    font-size: 1.4rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    color: var(--ke-gray);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.ke-contact__link:hover {
+    color: var(--ke-yellow);
+}
+
+.ke-contact__copyright {
+    font-size: 1.2rem;
+    color: var(--ke-gray);
+    margin-top: 6rem;
+    letter-spacing: 0.1em;
+}
+
+/* ========== 반응형 ========== */
+@media screen and (max-width: 1200px) {
+    .ke-skills__grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .ke-about {
+        grid-template-columns: 1fr;
+        gap: 4rem;
+    }
+    
+    .ke-project-item {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .ke-section {
+        padding: 8vh 6vw;
+    }
+    
+    .ke-hero__title {
+        font-size: clamp(3.5rem, 12vw, 6rem);
+    }
+    
+    .ke-about__stats {
+        gap: 3rem;
+    }
+    
+    .ke-skills__grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .ke-about__cta {
+        flex-direction: column;
+    }
+    
+    .ke-btn {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .ke-contact__links {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
 }
 
 .m-block{
@@ -445,18 +1128,82 @@ section.main__wrap {
     display: flex;
     justify-content: center;
     flex-direction: column;
+    align-items: flex-start;
     position: relative;
+}
+
+/* 카카오엔터프라이즈 스타일 메인 섹션 */
+section.main__wrap.main__wrap--enterprise {
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.main__content {
+    z-index: 2;
+    position: relative;
+}
+
+.main__label {
+    font-size: 1.4rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--kakao-yellow, #FEE500);
+    margin-bottom: 2rem;
 }
 
 section.main__wrap h1 {
     font-weight: 800;
-    margin-bottom: 6rem;
-    font-size: clamp(6rem, 8vw, 8rem);
+    margin-bottom: 3rem;
+    font-size: clamp(4rem, 7vw, 8rem);
     z-index: 2;
     position: relative;
-    font-family: "Exo 2", sans-serif;
-    font-weight: 600;
+    font-family: "Pretendard Variable", sans-serif;
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--text-primary);
+    letter-spacing: -0.02em;
 }
+
+.main__accent {
+    color: var(--kakao-yellow, #FEE500);
+}
+
+.main__desc {
+    font-size: clamp(1.6rem, 2vw, 2rem);
+    line-height: 1.8;
+    color: var(--text-tertiary);
+    margin-bottom: 6rem;
+}
+
+/* 스크롤 인디케이터 */
+.main__scroll-indicator {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.main__scroll-indicator span {
+    font-size: 1.2rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+}
+
+.main__scroll-line {
+    width: 1px;
+    height: 60px;
+    background: linear-gradient(to bottom, var(--kakao-yellow), transparent);
+    animation: scrollPulse 2s ease-in-out infinite;
+}
+
+@keyframes scrollPulse {
+    0%, 100% { opacity: 0.3; transform: scaleY(0.8); }
+    50% { opacity: 1; transform: scaleY(1); }
+}
+
 section.main__wrap p{
     font-size: clamp(1.8rem, 2vw, 2rem);
     line-height: 1.8;
@@ -523,6 +1270,153 @@ section.main__wrap p{
     color: var(--text-primary, #111);
     transition: color 0.3s ease;
 }
+
+/* ========== 카카오엔터프라이즈 스타일 About 섹션 ========== */
+.about__wrap--enterprise {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.about__wrap--enterprise .about__inner {
+    display: flex;
+    flex-direction: column;
+    gap: 5rem;
+}
+
+.about__hero {
+    max-width: 800px;
+}
+
+.about__label {
+    font-size: 1.4rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--kakao-yellow, #FEE500);
+    margin-bottom: 2rem;
+}
+
+.about__wrap--enterprise h2 {
+    font-family: "Pretendard Variable", sans-serif;
+    font-size: clamp(3.5rem, 6vw, 6rem);
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    margin-bottom: 0;
+}
+
+.about__accent {
+    color: var(--kakao-yellow, #FEE500);
+}
+
+/* 핵심 수치 */
+.about__stats {
+    display: flex;
+    gap: 6rem;
+    flex-wrap: wrap;
+}
+
+.about__stat {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.about__stat strong {
+    font-size: clamp(3rem, 5vw, 4.5rem);
+    font-weight: 700;
+    color: var(--text-primary);
+    line-height: 1;
+}
+
+.about__stat span {
+    font-size: 1.4rem;
+    color: var(--text-tertiary);
+    font-weight: 500;
+}
+
+/* 소개 텍스트 */
+.about__text {
+    max-width: 600px;
+}
+
+.about__text p {
+    font-size: clamp(1.6rem, 2vw, 2rem);
+    line-height: 1.8;
+    color: var(--text-tertiary);
+    margin-bottom: 1.5rem;
+}
+
+.about__text p:last-child {
+    margin-bottom: 0;
+}
+
+/* CTA 버튼 */
+.about__cta {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.about__btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem 3rem;
+    font-size: 1.6rem;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: all 0.3s;
+}
+
+.about__btn--primary {
+    background: var(--kakao-yellow, #FEE500);
+    color: var(--kakao-brown, #391B1B);
+}
+
+.about__btn--primary:hover {
+    background: var(--kakao-yellow-hover);
+    transform: translateY(-2px);
+}
+
+.about__btn--outline {
+    background: transparent;
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+}
+
+.about__btn--outline:hover {
+    border-color: var(--kakao-yellow);
+    color: var(--kakao-yellow);
+}
+
+/* About 반응형 */
+@media screen and (max-width: 768px) {
+    .about__wrap--enterprise h2 {
+        font-size: clamp(2.8rem, 8vw, 4rem);
+    }
+    
+    .about__stats {
+        gap: 3rem;
+    }
+    
+    .about__stat strong {
+        font-size: clamp(2.4rem, 8vw, 3.5rem);
+    }
+    
+    .about__cta {
+        flex-direction: column;
+    }
+    
+    .about__btn {
+        width: 100%;
+    }
+}
+
+/* 기존 about 스타일 (호환성 유지) */
 .about__box{
     display: flex;
     flex-wrap: wrap;
@@ -909,19 +1803,25 @@ button.shortcut__arrow {
 }
 @media screen and (max-width: 768px){
     section.main__wrap{
-        align-items: center;
-        text-align: center;
+        align-items: flex-start;
+        text-align: left;
         padding: 0 5vw;
     }
+    section.main__wrap.main__wrap--enterprise {
+        align-items: flex-start;
+    }
     section.main__wrap h1{
-        font-size: clamp(4rem, 10vw, 6rem);
-        margin-bottom: 3rem;
+        font-size: clamp(3rem, 8vw, 5rem);
+        margin-bottom: 2rem;
     }
     section.main__wrap p{
         font-size: clamp(1.4rem, 3.5vw, 1.8rem);
     }
-    section.main__wrap p br{
+    .main__desc br {
         display: none;
+    }
+    .main__scroll-indicator {
+        align-self: center;
     }
 }
 @media screen and (max-width: 600px){
@@ -1006,6 +1906,27 @@ button.shortcut__arrow {
   transition: 0.2s ease;
 }
 
+/* 카카오엔터프라이즈 스타일 Skills 섹션 */
+.skills-section--enterprise .skills__hero {
+    margin-bottom: 4rem;
+}
+
+.skills__label {
+    font-size: 1.4rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--kakao-yellow, #FEE500);
+    margin-bottom: 2rem;
+}
+
+.skills-section--enterprise h2 {
+    font-family: "Pretendard Variable", sans-serif;
+    font-size: clamp(3rem, 5vw, 5rem);
+    font-weight: 700;
+    margin-bottom: 0;
+    letter-spacing: -0.02em;
+}
 
 .skills-content {
   animation: fadeIn 0.5s;
@@ -1112,6 +2033,91 @@ margin-bottom: 12px;  font-family: "Exo 2", sans-serif;
     background: var(--bg-primary, #f4f4f8);
     transition: background 0.3s ease;
 }
+
+/* 카카오엔터프라이즈 스타일 Overview 섹션 */
+.overview--enterprise {
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+}
+
+.overview--enterprise .overview__inner {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+}
+
+.overview__hero {
+    max-width: 600px;
+}
+
+.overview__label {
+    font-size: 1.4rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--kakao-yellow, #FEE500);
+    margin-bottom: 2rem;
+}
+
+.overview--enterprise h2 {
+    font-family: "Pretendard Variable", sans-serif;
+    font-size: clamp(3.5rem, 6vw, 6rem);
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    margin-bottom: 2rem;
+    border: none;
+    padding: 0;
+}
+
+.overview__accent {
+    color: var(--kakao-yellow, #FEE500);
+}
+
+.overview__desc {
+    font-size: clamp(1.6rem, 2vw, 2rem);
+    line-height: 1.8;
+    color: var(--text-tertiary);
+}
+
+.overview__cta {
+    display: flex;
+}
+
+.overview__btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.5rem 3rem;
+    background: var(--kakao-yellow, #FEE500);
+    color: var(--kakao-brown, #391B1B);
+    font-size: 1.6rem;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: all 0.3s;
+}
+
+.overview__btn:hover {
+    background: var(--kakao-yellow-hover);
+    transform: translateY(-2px);
+}
+
+.overview__btn svg {
+    transition: transform 0.3s;
+}
+
+.overview__btn:hover svg {
+    transform: translateX(5px);
+}
+
+@media screen and (max-width: 768px) {
+    .overview--enterprise h2 {
+        font-size: clamp(2.8rem, 8vw, 4rem);
+    }
+}
+
 .overview__inner > h2{
     font-family: "Exo 2", sans-serif;
     font-size: var(--font-title);
@@ -1384,12 +2390,21 @@ body.light-mode .project-showcase {
 .project-showcase__header {
     margin-bottom: 6rem;
 }
-.project-showcase__header h2 {
-    font-family: "Exo 2", sans-serif;
-    font-size: clamp(3rem, 6vw, 5rem);
+.project-showcase__label {
+    font-size: 1.4rem;
     font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--kakao-yellow, #FEE500);
+    margin-bottom: 2rem;
+}
+.project-showcase--enterprise .project-showcase__header h2 {
+    font-family: "Pretendard Variable", sans-serif;
+    font-size: clamp(3rem, 5vw, 5rem);
+    font-weight: 700;
     color: var(--showcase-text, #111);
-    margin-bottom: 1.5rem;
+    margin-bottom: 0;
+    letter-spacing: -0.02em;
 }
 .project-showcase__subtitle {
     font-size: clamp(1.4rem, 2vw, 1.8rem);

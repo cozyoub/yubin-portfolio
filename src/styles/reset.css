@@ -139,6 +139,11 @@ caption{
     --main-color-pink: #f989b3;
     --main-color-pink-hover: #f76a9c;
     --main-color-green: #56dfb4;
+    /* 카카오 스타일 컬러 */
+    --kakao-yellow: #FEE500;
+    --kakao-yellow-hover: #FAE100;
+    --kakao-brown: #391B1B;
+    --kakao-brown-light: #5C3C3C;
     --font-color: #000000;
     --font-gray-color: #666;
     --default-width: 88%;
