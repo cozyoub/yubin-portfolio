@@ -109,7 +109,7 @@ const Skills = () => {
     <section className="skills-section" id="skills">
       <div className="skills__inner">
         <div className="skills-container">
-          <h2 data-aos="fade-in">이런 기술을 사용할 수 있습니다</h2>
+          <h2 data-aos="fade-in">Skills</h2>
 
           <div className="skills-content">
             {/* 탭 */}

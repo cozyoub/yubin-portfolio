@@ -2,10 +2,8 @@ import { Link } from 'react-router-dom';
 
 /**
  * 프로젝트/작업 상세(서브) 페이지 공통 레이아웃
- * - 뒤로가기 버튼, 제목, 설명 블록, 주요 정보 및 링크 정보(dl)
- * @param {string} backTo - 뒤로가기 링크 (기본: /project)
- * @param {Array<{ label: string, value?: string | string[], href?: string, links?: Array<{ text: string, href: string }> }>} linkInfo - 주요 정보 (value 배열이면 ul/li, links면 링크 버튼 여러 개)
- * @param {Array<{ title: string, url?: string, embedUrl?: string, videoUrl?: string }>} videos - 시연 영상 목록 (url: YouTube/Vimeo 링크, embedUrl: 임베드 URL, videoUrl: 직접 비디오 파일 경로)
+ * - coreFlows: { title, steps[] } 핵심 플로우 3~5개
+ * - keyLogic: { title, content } 로직 설명 3~5개
  */
 function ProjectSubLayout({
   title,
@@ -13,6 +11,9 @@ function ProjectSubLayout({
   backTo = '/project',
   backLabel = '목록으로',
   linkInfo = [],
+  coreFlows = [],
+  keyLogic = [],
+  pdfs = [],
   videos = [],
 }) {
   return (
@@ -36,7 +37,7 @@ function ProjectSubLayout({
 
           {linkInfo.length > 0 && (
             <section className="project-sub__info">
-              <h2 className="project-sub__info-title">주요 정보 및 링크 정보</h2>
+              <h2 className="project-sub__info-title">주요 정보 및 링크</h2>
               <dl className="project-sub__info-list">
                 {linkInfo.map((item, i) => (
                   <div key={i} className="project-sub__info-item">
@@ -78,6 +79,59 @@ function ProjectSubLayout({
                   </div>
                 ))}
               </dl>
+            </section>
+          )}
+
+          {coreFlows.length > 0 && (
+            <section className="project-sub__flows">
+              <h2 className="project-sub__flows-title">핵심 플로우</h2>
+              <div className="project-sub__flows-grid">
+                {coreFlows.map((flow, i) => (
+                  <div key={i} className="project-sub__flow-item">
+                    <h3 className="project-sub__flow-title">{flow.title}</h3>
+                    <ol className="project-sub__flow-steps">
+                      {(flow.steps || []).map((step, j) => (
+                        <li key={j}>{step}</li>
+                      ))}
+                    </ol>
+                  </div>
+                ))}
+              </div>
+            </section>
+          )}
+
+          {keyLogic.length > 0 && (
+            <section className="project-sub__logic">
+              <h2 className="project-sub__logic-title">로직 설명</h2>
+              <ul className="project-sub__logic-list">
+                {keyLogic.map((item, i) => (
+                  <li key={i} className="project-sub__logic-item">
+                    <strong className="project-sub__logic-label">{item.title}</strong>
+                    <p className="project-sub__logic-content">{item.content}</p>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          )}
+
+          {pdfs.length > 0 && (
+            <section className="project-sub__pdfs">
+              <h2 className="project-sub__pdfs-title">관련 자료 (PDF)</h2>
+              <ul className="project-sub__pdfs-list">
+                {pdfs.map((pdf, i) => (
+                  <li key={i} className="project-sub__pdf-item">
+                    <a
+                      href={pdf.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="project-sub__pdf-link"
+                    >
+                      <span className="project-sub__pdf-link-text">{pdf.title}</span>
+                      <span className="project-sub__pdf-link-icon">↗</span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
             </section>
           )}
 

@@ -30,11 +30,12 @@ export const projects = [
     backendTech: 'Spring Boot, JWT 인증, RESTful API (백엔드 팀원 담당)',
     role: 'Flutter 기반 모바일 앱 개발 및 React 웹 프론트엔드 구현, 백엔드 API 연동 및 사용자 인터페이스 설계',
     responsibilities: [
-      'Flutter를 활용한 Android 앱 UI/UX 구현 및 상태 관리',
-      'React 기반 웹 프론트엔드 개발 및 Styled-components를 통한 컴포넌트 스타일링',
-      'Axios를 통한 백엔드 API 통신 및 JWT 기반 인증 처리',
-      '카테고리별 월별 지출 데이터 필터링 및 그래프 시각화 (Chart 라이브러리 활용)',
-      '스켈레톤 로딩 UI 및 그래프 애니메이션 적용',
+      'Android 앱 UI/UX 설계 및 구현, 상태 관리',
+      '웹 프론트엔드 개발 및 Styled-components를 통한 컴포넌트 스타일링',
+      'JWT 기반 회원가입/로그인 인증 처리 및 Axios를 통한 백엔드 API 연동',
+      '지출/수입 입력, 조회, 수정, 삭제 기능 구현 및 API 연동',
+      '카테고리별·월별 지출 데이터 필터링 및 Chart 라이브러리 활용 그래프 시각화',
+      '스켈레톤 로딩 UI 및 그래프 애니메이션 적용으로 사용자 경험 개선',
     ],
     notionUrl: 'https://www.notion.so/2cd979b744f080bfaa7efd6fdd1396fd?v=2cd979b744f08158a5c7000caf2e97c2&source=copy_link',
     detailDescription: (
@@ -68,18 +69,37 @@ export const projects = [
         </p>
       </>
     ),
+    // 핵심 플로우 3~5개: 사용자/시스템 흐름을 단계로 정리
+    coreFlows: [
+      { title: '로그인', steps: ['아이디/비밀번호 입력 → API 호출 → JWT 저장(로컬스토리지) → 메인 이동'] },
+      { title: '회원가입', steps: ['닉네임·아이디·비밀번호 유효성 검증 → 회원가입 API → 자동 로그인 페이지 이동'] },
+      { title: '대시보드', steps: ['카테고리/월 선택 → 지출 데이터 조회 → Chart로 시각화, 스켈레톤 후 그래프 렌더'] },
+      { title: '챗봇 생성', steps: ['챗봇 이름·유형 입력 → API 생성 → 목록 반영'] },
+      { title: '지출 수정/삭제', steps: ['상세 진입 → 수정 시 검증 후 API 업데이트 / 삭제 시 확인 후 API 삭제 → 메인 리디렉션'] },
+    ],
+    // 로직 설명 3~5개: 핵심 기술/비즈니스 로직 요약
+    keyLogic: [
+      { title: '인증 유지', content: 'accessToken을 로컬 스토리지에 저장하고, API 요청 시 헤더에 포함해 인증 상태를 유지합니다.' },
+      { title: '지출 데이터 필터링', content: '카테고리·월 조건으로 API 조회 후, 프론트에서 Chart 라이브러리로 월별 지출 현황을 시각화합니다.' },
+      { title: '스켈레톤 UI', content: '데이터 로딩 중에는 스켈레톤을 보여주고, 로드 완료 시 애니메이션과 함께 그래프를 렌더링해 체감 속도를 높였습니다.' },
+      { title: '챗봇 CRUD', content: '챗봇 생성/수정/삭제는 각각 전용 API를 호출하고, 성공 시 목록 또는 상세를 갱신합니다.' },
+    ],
+    pdfs: [
+      { title: '프로젝트 소개서', url: '/documents/moneylog.pdf' },
+    ],
+    // url에 유튜브 또는 Streamable 링크 넣기. 유튜브: https://www.youtube.com/watch?v=영상ID | Streamable: https://streamable.com/영상ID
     videos: [
-      { title: '메인보드', videoUrl: 'videos/00_mainboard.mp4' },
-      { title: '회원가입/로그인', videoUrl: 'videos/01_signup_signin.mp4' },
-      { title: '챗봇 생성', videoUrl: 'videos/02_create_chatbot.mp4' },
-      { title: '챗봇 수정', videoUrl: 'videos/03_update_chatbot.mp4' },
-      { title: '챗봇 삭제', videoUrl: 'videos/04_delete_chatbot.mp4' },
-      { title: '지출 패턴 챗봇', videoUrl: 'videos/05_expense_pattern_chatbot.mp4' },
-      { title: '최근 내역 수정/삭제 챗봇', videoUrl: 'videos/06_latest_update_delete_chatbot.mp4' },
-      { title: '보호 챗봇', videoUrl: 'videos/07_protection_chatbot.mp4' },
-      { title: '대시보드 - 월별 통계', videoUrl: 'videos/08_dashboard_monthly.mp4' },
-      { title: '지출 내역', videoUrl: 'videos/09_history.mp4' },
-      { title: '챗봇 목록 조회', videoUrl: 'videos/10_read_list_chatbot.mp4' },
+      { title: '메인보드', url: 'https://youtu.be/o3HNJbuCSKQ' },
+      { title: '회원가입/로그인', url: 'https://youtu.be/QvaJMhz81xY' },
+      { title: '챗봇 - 생성', url: 'https://youtu.be/atigjA0xQJY' },
+      { title: '챗봇 - 수정', url: 'https://youtu.be/z_NkxqvY-7k' },
+      { title: '챗봇 - 삭제', url: 'https://youtu.be/gfGbU0bUZU4' },
+      { title: '챗봇 - 지출패턴', url: 'https://youtu.be/gauifz9F-hQ' },
+      { title: '챗봇 - 최근 내역 수정/삭제', url: 'https://youtu.be/TaZm9pF5ZTk' },
+      { title: '챗봇 - 예외처리', url: 'https://youtu.be/CLu_0wWFd-w' },
+      { title: '대시보드', url: 'https://youtu.be/fSsPRxR43PY' },
+      { title: '지출 내역', url: 'https://youtu.be/ioZXk6E2WyE' },
+      { title: '챗봇 목록 조회', url: 'https://www.youtube.com/watch?v=영상ID' },
     ],
   },
   {
@@ -111,6 +131,23 @@ export const projects = [
     ],
     notionUrl: 'https://www.notion.so/2cd979b744f080bfaa7efd6fdd1396fd?v=2cd979b744f08158a5c7000caf2e97c2&source=copy_link',
     detailDescription: 'Spring Boot 기반의 백엔드와 React 프론트엔드를 직접 설계·구현한 풀스택 프로젝트로, 서비스 구조 이해와 데이터 흐름 설계에 집중했습니다.',
+    coreFlows: [
+      { title: '회원가입/로그인', steps: ['입력 검증 → Spring Security JWT API 호출 → 토큰 저장 후 메인 이동'] },
+      { title: '습관 등록', steps: ['카테고리·습관명 설정 → Habit 도메인 저장 → 목록 반영'] },
+      { title: '일일 체크', steps: ['오늘 날짜 기준 Habit 목록 조회 → 체크 시 HabitLog 저장, DailyScore 반영'] },
+      { title: '월간 통계', steps: ['년·월 선택 → HabitLog/DailyScore 집계 API → 카테고리별 달성률·점수 시각화'] },
+    ],
+    keyLogic: [
+      { title: 'JWT 인증', content: 'Spring Security로 로그인 시 JWT 발급, 이후 API 요청 시 토큰 검증으로 인가 처리합니다.' },
+      { title: 'Habit / HabitLog / DailyScore', content: '습관(Habit) 단위로 일별 체크(HabitLog)를 남기고, 날짜별 점수(DailyScore)를 누적해 월간 통계에 활용합니다.' },
+      { title: '월간 통계 집계', content: '선택한 년·월의 HabitLog·DailyScore를 조회해 카테고리별 달성률과 점수를 계산해 화면에 표시합니다.' },
+    ],
+    pdfs: [
+      { title: '프로젝트 소개서', url: '/documents/slowmode.pdf' },
+    ],
+    videos: [
+      { title: '동영상 넣어야함 ..', url: 'https://www.youtube.com/watch?v=영상ID' },
+    ],
   },
   {
     id: 'bookkok',
@@ -133,12 +170,31 @@ export const projects = [
     collaborationTech: 'Git, GitHub',
     role: '서비스 전반 UI/UX 설계 및 퍼블리싱 총괄, 장바구니·결제·알림 기능의 화면 및 로직 구현, 팀 내 프론트엔드 파트 리딩 및 공통 컴포넌트 설계',
     responsibilities: [
-      'Spring Boot 프로젝트 메인·주요 화면 퍼블리싱, Thymeleaf 서버 사이드 렌더링 화면 구조',
-      '공통 레이아웃(Fragment)·재사용 컴포넌트 설계·구현, HTML/CSS 구조 및 클래스 네이밍 전략',
-      '반응형 레이아웃, Swiper·GSAP UI 인터랙션·애니메이션',
-      '장바구니·결제·알림 연동 화면 UI 및 일부 로직 구현',
+      '전체 서비스 레이아웃 설계 및 UI/UX 디자인, 반응형 웹 구현',
+      '장바구니 관리 및 주문/결제 시스템 개발',
+      '장바구니 결제·바로구매 통합 처리 로직 설계',
+      '결제 수단 등록/수정 및 판매 완료 알림 기능 구현',
+      'Spring Boot, JPA 기반 트랜잭션 관리 및 비즈니스 로직 개발'
     ],
     notionUrl: 'https://www.notion.so/2cd979b744f080a3aabde8c5838cc140?v=2cd979b744f08158a5c7000caf2e97c2&source=copy_link',
     detailDescription: 'Spring Boot + Thymeleaf 기반의 중고책 거래 플랫폼 팀 프로젝트입니다. 서비스 전반 UI/UX·퍼블리싱 총괄, 장바구니·결제·알림 화면 및 로직 구현을 담당했습니다.',
+    coreFlows: [
+      { title: '메인·도서 탐색', steps: ['메인 진입 → 알라딘 크롤링/등록 도서 목록 노출, Swiper·GSAP 인터랙션'] },
+      { title: '장바구니', steps: ['도서 담기 → 장바구니 화면에서 수량·삭제 처리 → 결제 진행'] },
+      { title: '결제', steps: ['결제 정보 입력 → 주문 API 호출 → 결제 완료·알림 연동'] },
+      { title: '알림', steps: ['주문·배송 등 이벤트 발생 시 알림 목록 갱신, 알림 화면에서 확인'] },
+      { title: '중고책 등록', steps: ['도서 정보(크롤링 또는 직접 입력) → 등록 API → 목록 반영'] },
+    ],
+    keyLogic: [
+      { title: '장바구니', content: '담은 도서 목록 조회·수량 변경·삭제 화면과 로직을 구현했습니다. 장바구니 도메인과 연동해 결제 진행까지 이어지도록 했습니다.' },
+      { title: '결제', content: '결제 정보 입력 화면과 주문 API 연동 로직을 구현했습니다. 주문 완료 후 주문 결과·알림과 연동되도록 처리했습니다.' },
+      { title: '알림', content: '주문·배송 등 이벤트에 따른 알림 목록 화면과 갱신 로직을 구현했습니다. 사용자가 알림을 확인할 수 있는 UI를 담당했습니다.' },
+    ],
+    pdfs: [
+      { title: '프로젝트 소개서', url: '/documents/chakkok.pdf' },
+    ],
+    videos: [
+      { title: '동영상 넣어야함 ..', url: 'https://www.youtube.com/watch?v=영상ID' },
+    ],
   },
 ];

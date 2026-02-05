@@ -9,29 +9,19 @@ const LOADING_DURATION = 500;
 
 /**
  * YouTube URL을 임베드 URL로 변환
- * @param {string} url - YouTube URL (일반 링크 또는 짧은 링크)
- * @returns {string} - 임베드 URL
  */
 function convertYouTubeToEmbed(url) {
   if (!url) return '';
-  
-  // 이미 임베드 URL인 경우
   if (url.includes('youtube.com/embed/')) return url;
-  
-  // YouTube URL에서 비디오 ID 추출
   const patterns = [
     /(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([^&\n?#]+)/,
     /youtube\.com\/watch\?.*v=([^&\n?#]+)/
   ];
-  
   for (const pattern of patterns) {
     const match = url.match(pattern);
-    if (match && match[1]) {
-      return `https://www.youtube.com/embed/${match[1]}`;
-    }
+    if (match && match[1]) return `https://www.youtube.com/embed/${match[1]}`;
   }
-  
-  return url; // 변환 실패 시 원본 반환
+  return url;
 }
 
 function buildLinkInfo(project) {
@@ -154,7 +144,7 @@ function ProjectDetailPage() {
 
   const description = project.detailDescription ?? content?.description ?? project.shortDescription;
   const linkInfo = buildLinkInfo(project);
-  // videos 배열을 처리하여 YouTube URL을 임베드 URL로 변환
+  // videos: url이 있으면 YouTube 임베드 URL로 변환
   const videos = (project.videos || []).map(video => ({
     ...video,
     embedUrl: video.embedUrl || (video.url && convertYouTubeToEmbed(video.url)) || undefined
@@ -167,6 +157,9 @@ function ProjectDetailPage() {
         title={project.title}
         description={description}
         linkInfo={linkInfo}
+        coreFlows={project.coreFlows || []}
+        keyLogic={project.keyLogic || []}
+        pdfs={project.pdfs || []}
         videos={videos}
       />
     </div>

@@ -24,7 +24,7 @@ const Overview = () => {
 탄탄한 기반이 되었습니다.
             </p>
         <section className="card-wrap">
-            <div className="card project" data-aos="fade-up" data-aos-duration="500" data-aos-delay="150">
+            {/* <div className="card project" data-aos="fade-up" data-aos-duration="500" data-aos-delay="150">
                 <Link to="/project">
                      <h2>Project</h2>
                     <p>프로젝트 소개, 관련 공부 기록</p>
@@ -32,7 +32,7 @@ const Overview = () => {
                 <img src="/images/arrow.svg" alt="Project 페이지로 이동"></img>
                 </button>
                 </Link>
-            </div>
+            </div> */}
 
             <div className="card about" data-aos="fade-up" data-aos-duration="500" data-aos-delay="200">
                 <Link to="/work">

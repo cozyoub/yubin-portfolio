@@ -62,13 +62,14 @@ const MainSection = () => {
       <div className="blur"></div>
       <div className="blur"></div>
       <h1 data-aos="fade-up" data-aos-easing="linear" data-aos-duration="500">
-        YOUBIN'S<br />WEB PORTFOLIO
+        YUBIN'S<br />WEB PORTFOLIO
       </h1>
      <p data-aos="fade-up" data-aos-easing="linear" data-aos-duration="500">
-        안녕하세요. <br />
-        프론트엔드 개발자로 전환 중인 이유빈입니다. <br />
-        6년간의 퍼블리싱 경험을 바탕으로 React와 JavaScript를 학습하며 실제 작동하는 서비스를 구현하고 있습니다. <br />
-        함께 고민하고, 함께 성장하며 더 나은 제품을 만들어가고 싶습니다.
+        안녕하세요. 풀스택 개발자 이유빈입니다. <br />
+        컴퓨터공학 전공과 6년간의 디자인 실무 경험을 결합하여  <br />
+        사용자 관점과 기술적 관점을 모두 갖춘 서비스를 설계하고 구현합니다. <br />
+        사용자 경험과 기술적 완성도를 모두 고민하며, 
+        함께 성장하고 더 나은 제품을 만들어가고 싶습니다.
       </p>
     </section>
   );
