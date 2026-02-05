@@ -10,9 +10,6 @@ const ProjectShowcase = () => {
       <div className="project-showcase__inner">
         <div className="project-showcase__header">
           <h2 data-aos="fade-in">Featured Projects</h2>
-          <p className="project-showcase__subtitle" data-aos="fade-up" data-aos-delay="100">
-            프론트엔드 개발자로 전향하며 진행한 개인 및 팀 프로젝트
-          </p>
         </div>
 
         <div className="project-showcase__list">
