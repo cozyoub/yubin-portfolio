@@ -6,6 +6,7 @@ import ContactSection from '../components/ContactSection';
 import ReturnTop from '../components/ReturnTop';
 import Skills from '../components/Skills';
 import Overview from '../components/Overview';
+import ProjectShowcase from '../components/ProjectShowcase';
 
 function HomePage() {
   return (
@@ -14,6 +15,7 @@ function HomePage() {
       <MainSection />
       <AboutSection />
       <Skills />
+      <ProjectShowcase />
       <Overview />
       <ContactSection />
       <ReturnTop />

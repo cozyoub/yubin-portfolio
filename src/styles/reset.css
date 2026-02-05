@@ -145,8 +145,49 @@ caption{
     --default-radius: 0.75rem;
     --default-radius-small: 0.37rem;
     --border-style: 1px solid #ccc;
-    --noise-background: url(images/texture_background.webp);
+    --noise-background: var(--bg-image-6);
     --noise-opacity: 0.05;
+}
+
+/* ========== 라이트모드 (기본) ========== */
+body.light-mode {
+    --bg-primary: #f4f4f8;
+    --bg-secondary: #ffffff;
+    --bg-tertiary: #fafafa;
+    --bg-card: #ffffff;
+    --bg-overlay: rgba(255, 255, 255, 0.9);
+    --text-primary: #111111;
+    --text-secondary: #333333;
+    --text-tertiary: #666666;
+    --text-muted: #999999;
+    --border-color: #e5e5e5;
+    --border-light: rgba(0, 0, 0, 0.1);
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --header-bg: rgba(255, 255, 255, 0.8);
+    --skills-bg: #f4f4f8;
+    --work-bg: #fafafa;
+}
+
+/* ========== 다크모드 ========== */
+body.dark-mode {
+    --bg-primary: #0a0a0a;
+    --bg-secondary: #111111;
+    --bg-tertiary: #1a1a1a;
+    --bg-card: #1f1f1f;
+    --bg-overlay: rgba(0, 0, 0, 0.9);
+    --text-primary: #ffffff;
+    --text-secondary: #e5e5e5;
+    --text-tertiary: #a0a0a0;
+    --text-muted: #666666;
+    --border-color: #2a2a2a;
+    --border-light: rgba(255, 255, 255, 0.1);
+    --shadow-color: rgba(0, 0, 0, 0.3);
+    --header-bg: rgba(10, 10, 10, 0.8);
+    --skills-bg: #111111;
+    --work-bg: #0f0f0f;
+    --point-color: #ff9ec4;
+    --main-color-pink: #ff9ec4;
+    --main-color-pink-hover: #ffb8d4;
 }
 
 ::selection {
