@@ -29,7 +29,7 @@ const Overview = () => {
                      <h2>Project</h2>
                     <p>프로젝트 소개, 관련 공부 기록</p>
                 <button className="circle-btn gray">
-                <img src="/images/arrow.svg" alt="Project 페이지로 이동"></img>
+                <img src="images/arrow.svg" alt="Project 페이지로 이동"></img>
                 </button>
                 </Link>
             </div> */}
@@ -40,7 +40,7 @@ const Overview = () => {
                 <p>프론트엔드 확장에 대한 탄탄한 기반</p>
 
                 <button className="circle-btn green">
-                <img src="/images/arrow.svg" alt="About 페이지로 이동"></img>
+                <img src="images/arrow.svg" alt="About 페이지로 이동"></img>
                 </button>
                 </Link>
             </div>

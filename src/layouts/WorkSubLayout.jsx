@@ -17,7 +17,7 @@ function WorkSubLayout({
         <div className="work-sub__inner">
           <Link to="/work" className="work-sub__back" aria-label="작업 목록으로">
             <span className="work-sub__back-icon" aria-hidden>
-              <img src='/images/back.webp' alt="" />
+              <img src='images/back.webp' alt="" />
             </span>
           </Link>
 
