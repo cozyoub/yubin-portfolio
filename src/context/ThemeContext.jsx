@@ -7,8 +7,8 @@ export const ThemeProvider = ({ children }) => {
     // localStorage에서 테마 불러오기
     const saved = localStorage.getItem('theme');
     if (saved) return saved === 'dark';
-    // 시스템 설정 확인
-    return window.matchMedia('(prefers-color-scheme: dark)').matches;
+    // 기본값: 라이트모드
+    return false;
   });
 
   useEffect(() => {
