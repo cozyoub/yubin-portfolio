@@ -7,7 +7,7 @@ const ProjectShowcase = () => {
 
   return (
     <section className="project-showcase">
-      <div className="project-showcase__inner">
+      <div className="section__inner">
         <div className="project-showcase__header">
           <h2 data-aos="fade-in">Featured Projects</h2>
         </div>

@@ -1,7 +1,5 @@
 import { DEV_SKILLS, DESIGN_SKILLS } from '../constants/skills';
 
-// 이력서
-const RESUME_URL = 'https://www.notion.so/21e979b744f08038996adc881440d12d?source=copy_link';
 // 경력기술서
 const CAREER_DOC_URL = 'https://www.notion.so/_-22a979b744f08058a767c28298296217?source=copy_link';
 const CAREER_LIST = [
@@ -14,98 +12,100 @@ const AboutSection = () => {
   const skills = [...DEV_SKILLS, ...DESIGN_SKILLS];
 
   return (
-    <section id="about" className="about__wrap">
-      <div className="about__inner">
-        <h2 data-aos="fade-in">ABOUT ME</h2>
-        <div className="about__box container-md mb80">
-          <div className="img__box">
-            <img
-              className="img__emoji"
-              src="images/profile.JPG"
-              alt="Yoobean"
-              data-aos="fade-right"
-              data-aos-easing="linear"
-              data-aos-duration="500"
-            />
+    <section id="about" className="about">
+      <div className="section__inner">
+        <h2 data-aos="fade-up">About</h2>
+
+        {/* 프로필 + 소개 좌우 배치 */}
+        <div className="about__hero" data-aos="fade-up" data-aos-delay="100">
+          <div className="about__photo">
+            <img src="images/profile.JPG" alt="이유빈" />
           </div>
-          <div className="about__txt__box">
-            <div
-              className="about__txt"
-              data-aos="flip-right"
-              data-aos-easing="linear"
-              data-aos-duration="500"
-            >
-              <p>안녕하세요. 웹 서비스 전반을 이해하며 개발하는 프론트엔드 개발자 이유빈입니다.</p>
-
-              <p>
-                6년간 웹 퍼블리셔로 근무하며 웹 구조와 사용자 경험에 대한 이해를 쌓았고,
-                이후 개발 역량을 확장하기 위해 Python, React, Spring Boot를 학습했습니다.
-              </p>
-
-              <p>
-                React와 JavaScript를 기반으로 사용자 인터페이스를 구현하고,
-                Spring Boot로 구성된 백엔드와의 API 연동을 통해
-                데이터 처리와 서비스 흐름을 고려한 개발 경험을 쌓았습니다.
-              </p>
-
-              <p>
-                Python을 활용한 로직 구현과 데이터 처리 경험을 바탕으로
-                단순 UI 구현을 넘어 기능 단위로 사고하며 문제를 해결하고자 합니다.
-              </p>
-
-              <p className="mb40">
-                새로운 기술을 배우는 과정과 팀 협업을 중요하게 생각하며,
-                신뢰할 수 있는 서비스를 만드는 개발자로 성장하고 싶습니다.
-              </p>
-
-              <a
-                href={RESUME_URL}
-                className="shortcut__arrow"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                이력서 바로가기 <i className="fa-solid fa-circle-chevron-right" />
-              </a>
-            </div>
-          </div>
-        </div>
-        <div className="about__box container-md career">
-          <div data-aos="fade-up" data-aos-duration="500">
-            <h3>WORK EXPERIENCE</h3>
-            <ul className="about__txt">
-              {CAREER_LIST.map((item, i) => (
-                <li key={i}>
-                  {item.period} {item.company}
-                </li>
-              ))}
-            </ul>
+          <div className="about__intro">
+            <h3 className="about__catchphrase">
+              사용자의 눈으로,<br />
+              개발자의 손으로.
+            </h3>
+            <p className="about__bio">
+              6년간 웹 퍼블리셔로 근무하며 웹 구조와 사용자 경험에 대한 이해를 쌓았고,
+              이후 개발 역량을 확장하기 위해 React, Spring Boot, Python을 학습했습니다.
+              단순 UI 구현을 넘어 기능 단위로 사고하며 문제를 해결합니다.
+            </p>
             <a
               href={CAREER_DOC_URL}
-              className="shortcut__arrow"
+              className="about__link"
               target="_blank"
               rel="noopener noreferrer"
             >
-              경력기술서 바로가기 <i className="fa-solid fa-circle-chevron-right" />
+              경력기술서 보기 →
             </a>
           </div>
-          <div data-aos="fade-up" data-aos-duration="500">
-            <h3>EDUCATION</h3>
-            <ul className="about__txt">
-              <li>2025.07 - 2026.02 AI&빅데이터 분석 활용 풀스택 서비스 개발 수료 - 부산IT교육센터</li>
-              <li>2018.07 - 2018.11 스마트기기 UX/UI디자인(디지털디자인) 수료 - 그린컴퓨터아카데미</li>
-              <li>2013.03 - 2017.08 경성대학교 컴퓨터공학과 졸업</li>
+        </div>
+
+        {/* 잡지형 강점 3컬럼 */}
+        <div className="magazine" data-aos="fade-up" data-aos-delay="200">
+          <article className="magazine__item">
+            <span className="magazine__number">01</span>
+            <h4 className="magazine__keyword">Convergence</h4>
+            <p className="magazine__body">
+              6년의 디자인 실무와 컴퓨터공학 전공의 유기적 결합.
+              시각적 감각과 기술적 집요함으로 최상의 UX를 설계합니다.
+            </p>
+          </article>
+          <article className="magazine__item">
+            <span className="magazine__number">02</span>
+            <h4 className="magazine__keyword">Bridge</h4>
+            <p className="magazine__body">
+              디자이너의 언어와 개발자의 로직을 완벽히 이해하는 소통가.
+              제품의 시작과 끝을 책임지는 올라운더입니다.
+            </p>
+          </article>
+          <article className="magazine__item">
+            <span className="magazine__number">03</span>
+            <h4 className="magazine__keyword">Value</h4>
+            <p className="magazine__body">
+              비즈니스의 목적을 이해하고 사용자 중심의 가치를 코드로 증명합니다.
+              끊임없이 고민하며 동료와 함께 성장합니다.
+            </p>
+          </article>
+        </div>
+
+        {/* 경력 / 학력 / 자격증 - 구분선 기반 */}
+        <div className="about__career" data-aos="fade-up" data-aos-delay="300">
+          <div className="about__career-col">
+            <h3>Experience</h3>
+            <ul>
+              {CAREER_LIST.map((item, i) => (
+                <li key={i}>
+                  <span className="about__career-period">{item.period}</span>
+                  <span className="about__career-company">{item.company}</span>
+                </li>
+              ))}
             </ul>
           </div>
-          <div data-aos="fade-up" data-aos-duration="500">
-            <h3>CERTIFICATE</h3>
-            <ul className="about__txt">
-              <li>정보처리기사 - 한국산업인력공단</li>
-              <li>보통 2종 면허 - 운전면허시험관리단</li>
+          <div className="about__career-col">
+            <h3>Education</h3>
+            <ul>
+              <li>
+                <span className="about__career-period">2025.07 - 2026.02</span>
+                <span className="about__career-company">AI&빅데이터 풀스택 개발 수료</span>
+              </li>
+              <li>
+                <span className="about__career-period">2013.03 - 2017.08</span>
+                <span className="about__career-company">경성대학교 컴퓨터공학과</span>
+              </li>
+            </ul>
+          </div>
+          <div className="about__career-col">
+            <h3>Certificate</h3>
+            <ul>
+              <li>정보처리기사</li>
             </ul>
           </div>
         </div>
       </div>
 
+      {/* 마키 */}
       <div className="marquee">
         <div className="marquee__group">
           {[...skills, ...skills].map((skill, index) => (

@@ -53,7 +53,7 @@ const WorkSection = () => {
 
   return (
     <section id="work" className="work__wrap">
-      <div className="work__inner">
+      <div className="section__inner">
         <h2 data-aos="fade-in">Project</h2>
         <div>
           <ul className="work__list">

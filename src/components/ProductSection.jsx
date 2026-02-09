@@ -49,7 +49,7 @@ const ProductSection = () => {
   return (
     <>
       <section id="product" className="product_wrap">
-        <div className="product__inner">
+        <div className="section__inner">
           <h2 data-aos="fade-in">DEVELOPMENT</h2>
           <h5 data-aos="fade-in">
             Spring Boot 기반의 백엔드와 React 프론트엔드를 연동하여

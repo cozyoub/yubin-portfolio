@@ -151,20 +151,21 @@ caption{
 
 /* ========== 라이트모드 (기본) ========== */
 body.light-mode {
-    --bg-primary: #f4f4f8;
-    --bg-secondary: #ffffff;
-    --bg-tertiary: #fafafa;
-    --bg-card: #ffffff;
+    --bg-primary: #fff;
+    --bg-secondary: #fafafa;
+    --bg-tertiary: #f5f5f5;
+    --bg-card: #fff;
     --text-primary: #111;
     --text-secondary: #333;
     --text-tertiary: #666;
     --text-muted: #999;
-    --border-color: #ddd;
+    --border-color: #e0e0e0;
     --border-light: #eee;
     --shadow-color: #ccc;
     --header-bg: #fff;
-    --skills-bg: #f4f4f8;
-    --work-bg: #fafafa;
+    --skills-bg: #fff;
+    --work-bg: #fff;
+    background-color: #fff;
 }
 
 /* ========== 다크모드 ========== */
@@ -189,13 +190,13 @@ body.dark-mode {
 }
 
 ::selection {
-    background: #9891f9;
-    color: #e9e8fa !important;
+    background: var(--main-color-pink, #ff9ec4);
+    color: #fff !important;
 }
 
 ::-moz-selection {
-    background: #9891f9;
-    color: #e9e8fa !important;
+    background: var(--main-color-pink, #ff9ec4);
+    color: #fff !important;
 }
 
 * {box-sizing: border-box;}

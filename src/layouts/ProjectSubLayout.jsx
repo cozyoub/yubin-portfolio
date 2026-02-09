@@ -1,3 +1,4 @@
+import { useState, useCallback, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 /**
@@ -16,6 +17,26 @@ function ProjectSubLayout({
   pdfs = [],
   videos = [],
 }) {
+  const [activeVideo, setActiveVideo] = useState(null);
+
+  const openVideo = useCallback((video) => {
+    setActiveVideo(video);
+    document.body.style.overflow = 'hidden';
+  }, []);
+
+  const closeVideo = useCallback(() => {
+    setActiveVideo(null);
+    document.body.style.overflow = '';
+  }, []);
+
+  // ESC 키로 닫기
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape' && activeVideo) closeVideo();
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [activeVideo, closeVideo]);
   return (
     <div className="wrap project-sub">
       <main className="project-sub__main">
@@ -135,51 +156,96 @@ function ProjectSubLayout({
             </section>
           )}
 
-          {videos.length > 0 && (
-            <section className="project-sub__videos">
-              <h2 className="project-sub__videos-title">시연 영상</h2>
-              <div className="project-sub__videos-grid">
-                {videos.map((video, i) => (
-                  <div key={i} className="project-sub__video-item">
-                    <h3 className="project-sub__video-title">{video.title}</h3>
-                    <div className="project-sub__video-wrapper">
-                      {video.embedUrl ? (
-                        <iframe
-                          src={video.embedUrl}
-                          title={video.title}
-                          frameBorder="0"
-                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                          allowFullScreen
-                          className="project-sub__video-embed"
-                        />
-                      ) : video.videoUrl ? (
-                        <video
-                          src={video.videoUrl}
-                          controls
-                          className="project-sub__video-player"
-                        >
-                          브라우저가 비디오 태그를 지원하지 않습니다.
-                        </video>
-                      ) : video.url ? (
-                        <a
-                          href={video.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="project-sub__video-link"
-                        >
-                          <span className="project-sub__video-link-text">영상 보기</span>
-                          <span className="project-sub__video-link-icon">↗</span>
-                        </a>
-                      ) : null}
+          {videos.length > 0 && (() => {
+            // category별로 그룹핑
+            const grouped = {};
+            videos.forEach(v => {
+              const cat = v.category || '영상';
+              if (!grouped[cat]) grouped[cat] = [];
+              grouped[cat].push(v);
+            });
+            const categories = Object.keys(grouped);
+            const hasCategories = categories.length > 1 || categories[0] !== '영상';
+
+            return (
+              <section className="project-sub__videos">
+                <h2 className="project-sub__videos-title">시연 영상</h2>
+                {hasCategories ? (
+                  categories.map(cat => (
+                    <div key={cat} className="project-sub__video-group">
+                      <h3 className="project-sub__video-group-label">{cat}</h3>
+                      <p className="project-sub__video-inline">
+                        {grouped[cat].map((video, i) => (
+                          <span key={i}>
+                            {i > 0 && <span className="project-sub__video-sep"> · </span>}
+                            <button
+                              type="button"
+                              className="project-sub__video-link"
+                              onClick={() => openVideo(video)}
+                            >{video.title}</button>
+                          </span>
+                        ))}
+                      </p>
                     </div>
-                  </div>
-                ))}
-              </div>
-            </section>
-          )}
+                  ))
+                ) : (
+                  <p className="project-sub__video-inline">
+                    {videos.map((video, i) => (
+                      <span key={i}>
+                        {i > 0 && <span className="project-sub__video-sep"> · </span>}
+                        <button
+                          type="button"
+                          className="project-sub__video-link"
+                          onClick={() => openVideo(video)}
+                        >{video.title}</button>
+                      </span>
+                    ))}
+                  </p>
+                )}
+              </section>
+            );
+          })()}
 
         </div>
       </main>
+
+      {/* 유튜브 팝업 모달 */}
+      {activeVideo && (
+        <div className="video-modal" onClick={closeVideo}>
+          <div className="video-modal__content" onClick={(e) => e.stopPropagation()}>
+            <button
+              type="button"
+              className="video-modal__close"
+              onClick={closeVideo}
+              aria-label="닫기"
+            >
+              ✕
+            </button>
+            <h3 className="video-modal__title">{activeVideo.title}</h3>
+            <div className="video-modal__wrapper">
+              {activeVideo.embedUrl ? (
+                <iframe
+                  src={`${activeVideo.embedUrl}?autoplay=1`}
+                  title={activeVideo.title}
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  className="video-modal__iframe"
+                />
+              ) : activeVideo.url ? (
+                <iframe
+                  src={`${activeVideo.url}?autoplay=1`}
+                  title={activeVideo.title}
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  className="video-modal__iframe"
+                />
+              ) : null}
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
