@@ -219,9 +219,9 @@ function projectPages(book) {
 
   const pages = [];
 
-  // 1) cover: 사진 + 개요
+  // 1) cover (가로 이미지): 위 사진 + 아래 글
   pages.push({
-    layout: 'cover', image: pj.image,
+    layout: 'cover', image: pj.image, wide: true,
     content: (
       <>
         <h1 className="lBook__title">{pj.title}</h1>
@@ -286,7 +286,67 @@ function projectPages(book) {
     });
   }
 
-  // 3) spread: 기술적 고민(좌) + 시연영상·PDF(우)
+  // 3) ERD + Use Case — 한 페이지에 위아래로
+  if (pj.erdImage || pj.usecaseImage) {
+    pages.push({
+      layout: 'spread',
+      left: (
+        <div className="lBook__diagrams">
+          {pj.erdImage && (
+            <div className="lBook__diagram-item">
+              <div className="lBook__diagram-img">
+                <img src={pj.erdImage} alt="ERD" loading="lazy" />
+              </div>
+              <h3 className="lBook__screen-title">ERD</h3>
+            </div>
+          )}
+          {pj.usecaseImage && (
+            <div className="lBook__diagram-item">
+              <div className="lBook__diagram-img">
+                <img src={pj.usecaseImage} alt="Use Case" loading="lazy" />
+              </div>
+              <h3 className="lBook__screen-title">Use Case</h3>
+            </div>
+          )}
+        </div>
+      ),
+      right: pj.architectureImage ? (
+        <div className="lBook__screen">
+          <div className="lBook__screen-img">
+            <img src={pj.architectureImage} alt="Architecture" loading="lazy" />
+          </div>
+          <h3 className="lBook__screen-title">시스템 도식화</h3>
+          <p className="lBook__screen-desc">전체 시스템의 구조와 데이터 흐름을 나타낸 아키텍처 다이어그램입니다.</p>
+        </div>
+      ) : null,
+    });
+  }
+
+  // 5) 화면 설명 (2개씩 spread: 왼쪽 화면 + 오른쪽 화면)
+  if (pj.screens?.length) {
+    for (let i = 0; i < pj.screens.length; i += 2) {
+      const sL = pj.screens[i];
+      const sR = pj.screens[i + 1];
+
+      const renderScreen = (s) => (
+        <div className="lBook__screen">
+          <div className="lBook__screen-img">
+            <img src={s.image} alt={s.title} loading="lazy" />
+          </div>
+          <h3 className="lBook__screen-title">{s.title}</h3>
+          <p className="lBook__screen-desc">{s.description}</p>
+        </div>
+      );
+
+      pages.push({
+        layout: 'spread',
+        left: renderScreen(sL),
+        right: sR ? renderScreen(sR) : null,
+      });
+    }
+  }
+
+  // 6) spread: 기술적 고민(좌) + 시연영상·PDF(우)
   {
     const hasChallenge = pj.challenges?.length > 0;
     const hasPdf = pj.pdfs?.length > 0;
@@ -374,43 +434,48 @@ function workPages(book) {
     ),
   });
 
-  // spread: 2개씩 묶어서 좌/우
-  for (let i = 0; i < works.length; i += 2) {
-    const wL = works[i];
-    const wR = works[i + 1];
-
-    const renderWork = (w) => (
-      <>
-        <h2 className="lBook__section">{w.title}</h2>
-        <p className="lBook__paragraph">{w.detailDescription || w.shortDescription}</p>
-        <small className="lBook__attention">
-          {w.period}{w.contribution ? ` · ${w.contribution}` : ''}
-        </small>
-        <div className="lBook__dl">
-          {w.role && <div className="lBook__dl-row"><dt>역할</dt><dd>{w.role}</dd></div>}
-          {w.techStack && <div className="lBook__dl-row"><dt>기술</dt><dd>{w.techStack}</dd></div>}
-        </div>
-        {w.relatedLinks?.length > 0 && (
-          <div className="lBook__link-chips" style={{ marginTop: '1vh' }}>
-            {w.relatedLinks.slice(0, 4).map((l, j) => (
-              <a key={j} href={l.url} target="_blank" rel="noopener noreferrer" className="lBook__chip">{l.text} ↗</a>
-            ))}
-          </div>
-        )}
-        {w.notionUrl && (
-          <div className="lBook__more">
-            <a href={w.notionUrl} target="_blank" rel="noopener noreferrer" className="lBook__more-link">Notion ↗</a>
-          </div>
-        )}
-      </>
-    );
-
+  // 각 work: 왼쪽 사진 + 오른쪽 글
+  works.forEach((w) => {
     pages.push({
       layout: 'spread',
-      left: renderWork(wL),
-      right: wR ? renderWork(wR) : null,
+      left: (
+        <div className="lBook__work-photo">
+          <img src={w.image} alt={w.title} loading="lazy" />
+          {w.deployUrl && (
+            <a href={w.deployUrl} target="_blank" rel="noopener noreferrer" className="lBook__work-visit">사이트 방문 ↗</a>
+          )}
+        </div>
+      ),
+      right: (
+        <>
+          <h2 className="lBook__section">{w.title}</h2>
+          <span className="lBook__work-type">{w.type}</span>
+          <p className="lBook__paragraph">{w.detailDescription || w.shortDescription}</p>
+          <div className="lBook__dl">
+            {w.period && <div className="lBook__dl-row"><dt>기간</dt><dd>{w.period}</dd></div>}
+            {w.contribution && <div className="lBook__dl-row"><dt>기여</dt><dd>{w.contribution}</dd></div>}
+            {w.role && <div className="lBook__dl-row"><dt>역할</dt><dd>{w.role}</dd></div>}
+            {w.techStack && <div className="lBook__dl-row"><dt>기술</dt><dd>{w.techStack}</dd></div>}
+          </div>
+          {w.relatedLinks?.length > 0 && (
+            <>
+              <hr className="lBook__hr" />
+              <div className="lBook__link-chips">
+                {w.relatedLinks.slice(0, 5).map((l, j) => (
+                  <a key={j} href={l.url} target="_blank" rel="noopener noreferrer" className="lBook__chip">{l.text} ↗</a>
+                ))}
+              </div>
+            </>
+          )}
+          {w.notionUrl && (
+            <div className="lBook__more">
+              <a href={w.notionUrl} target="_blank" rel="noopener noreferrer" className="lBook__more-link">상세 보기 →</a>
+            </div>
+          )}
+        </>
+      ),
     });
-  }
+  });
   return pages;
 }
 
@@ -499,7 +564,7 @@ const BookOpen = ({ book, onClose }) => {
   return (
     <div className="lBook">
       <div className="lBook__inner">
-        <div className={`lBook__body ${page.layout === 'cover' ? 'lBook__body--cover' : 'lBook__body--spread'}`} key={current}>
+        <div className={`lBook__body ${page.layout === 'cover' ? (page.wide ? 'lBook__body--cover-wide' : 'lBook__body--cover') : 'lBook__body--spread'}`} key={current}>
 
           {/* 페이지 번호 */}
           <div className="lBook__index">

@@ -77,6 +77,21 @@ export const projects = [
     ],
     githubUrlBackend: 'https://github.com/rkdtl1930-cell/moneylog-back',
     notionUrl: 'https://www.notion.so/2cd979b744f080bfaa7efd6fdd1396fd',
+    // ERD / Use Case / 도식화 / 화면 설명
+    erdImage: 'images/erd_moneylog.png',
+    usecaseImage: 'images/usecase_moneylog.png',
+    architectureImage: 'images/arch_moneylog.png',
+    screens: [
+      { image: 'images/screen_moneylog_01.png', title: '메인 대시보드', description: '월별 지출/수입 현황을 그래프와 함께 한눈에 확인할 수 있는 메인 화면입니다.' },
+      { image: 'images/screen_moneylog_02.png', title: '챗봇 지출 입력', description: '챗봇 인터페이스를 통해 대화형으로 지출을 입력하고 관리합니다.' },
+      { image: 'images/screen_moneylog_03.png', title: '카테고리별 통계', description: '카테고리별 지출 비율과 월별 추이를 Chart 라이브러리로 시각화합니다.' },
+      { image: 'images/screen_moneylog_04.png', title: '지출 내역 조회', description: '전체 지출 내역을 날짜순으로 조회하고 수정/삭제할 수 있습니다.' },
+      { image: 'images/screen_moneylog_05.png', title: '회원가입/로그인', description: 'JWT 기반 인증으로 회원가입 및 로그인을 처리합니다.' },
+      { image: 'images/screen_moneylog_06.png', title: 'App 메인 화면', description: 'Flutter 기반 Android 앱의 메인 화면으로 모바일 환경에 최적화되어 있습니다.' },
+      { image: 'images/screen_moneylog_07.png', title: 'App 챗봇', description: '모바일 앱에서도 챗봇을 통해 지출을 간편하게 기록합니다.' },
+      { image: 'images/screen_moneylog_08.png', title: 'App 통계', description: '앱 내에서 카테고리별 지출 통계를 확인할 수 있습니다.' },
+    ],
+
     pdfs: [
       { title: '프로젝트 소개서', url: '/documents/moneylog.pdf' },
     ],
@@ -177,6 +192,19 @@ export const projects = [
     githubUrl: 'https://github.com/ubzzang/slow_mode_app',
     githubUrlBackend: 'https://github.com/ubzzang/slow_mode',
     notionUrl: 'https://www.notion.so/2cd979b744f080bfaa7efd6fdd1396fd',
+    // ERD / Use Case / 도식화 / 화면 설명
+    erdImage: 'images/erd_slowmode.png',
+    usecaseImage: 'images/usecase_slowmode.png',
+    architectureImage: 'images/arch_slowmode.png',
+    screens: [
+      { image: 'images/screen_slowmode_01.png', title: '메인 화면', description: '오늘의 습관 체크 현황과 점수를 확인하는 메인 페이지입니다.' },
+      { image: 'images/screen_slowmode_02.png', title: '습관 체크', description: '일일 습관을 체크하고 점수가 실시간으로 누적됩니다.' },
+      { image: 'images/screen_slowmode_03.png', title: '월간 통계', description: '카테고리별 달성률과 점수를 월별로 집계하여 시각화합니다.' },
+      { image: 'images/screen_slowmode_04.png', title: '회원가입/로그인', description: 'JWT 기반 인증으로 안전한 회원 관리를 제공합니다.' },
+      { image: 'images/screen_slowmode_05.png', title: '습관 관리', description: '나만의 습관을 생성, 수정, 삭제할 수 있습니다.' },
+      { image: 'images/screen_slowmode_06.png', title: '카테고리별 분석', description: '건강, 운동, 식단 등 카테고리별 달성률을 확인합니다.' },
+    ],
+
     pdfs: [
       { title: '프로젝트 소개서', url: '/documents/slowmoe.pdf' },
     ],
@@ -257,6 +285,19 @@ export const projects = [
       },
     ],
     
+    // ERD / Use Case / 도식화 / 화면 설명
+    erdImage: 'images/erd_bookkok.png',
+    usecaseImage: 'images/usecase_bookkok.png',
+    architectureImage: 'images/arch_bookkok.png',
+    screens: [
+      { image: 'images/screen_bookkok_01.png', title: '메인 페이지', description: '중고책 목록을 카테고리별로 탐색하는 메인 화면입니다.' },
+      { image: 'images/screen_bookkok_02.png', title: '도서 상세', description: '도서의 상세 정보, 판매자 정보, 장바구니 추가 기능을 제공합니다.' },
+      { image: 'images/screen_bookkok_03.png', title: '장바구니', description: '장바구니에 담긴 도서 목록을 관리하고 결제를 진행합니다.' },
+      { image: 'images/screen_bookkok_04.png', title: '결제', description: '장바구니 결제와 바로구매를 통합 처리하는 결제 화면입니다.' },
+      { image: 'images/screen_bookkok_05.png', title: '마이페이지', description: '주문 내역, 판매 내역, 알림을 확인할 수 있습니다.' },
+      { image: 'images/screen_bookkok_06.png', title: '도서 등록', description: '판매할 중고책을 등록하는 화면입니다.' },
+    ],
+
     // 링크
     githubUrl: 'https://github.com/applause000000-jpg/WebProject',
     notionUrl: 'https://www.notion.so/2cd979b744f080a3aabde8c5838cc140',

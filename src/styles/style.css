@@ -665,7 +665,7 @@ body.dark-mode .lBook__thumbnail-caption { color: #777; }
     flex: 1;
     overflow-y: auto;
     overflow-x: hidden;
-    padding: 5vh 4vw;
+    padding: 5vh 1vw;
 }
 .lBook__page::-webkit-scrollbar { width: 3px; }
 .lBook__page::-webkit-scrollbar-track { background: transparent; }
@@ -1039,6 +1039,141 @@ body.dark-mode .lBook__challenge p { color: #999; }
 body.dark-mode .lBook__chip { background: #3a3a3a; color: #ccc; }
 body.dark-mode .lBook__chip:hover { background: #4a4a4a; color: #fff; }
 
+/* ── 가로 이미지 커버 (프로젝트용): 위 사진 + 아래 글 ── */
+.lBook__body--cover-wide {
+    display: flex;
+    flex-direction: column;
+    padding: 4vh 5vh;
+}
+.lBook__body--cover-wide .lBook__thumbnail {
+    width: 100%;
+    height: auto;
+    max-height: 50%;
+    flex-shrink: 0;
+    border-radius: 6px;
+    overflow: hidden;
+}
+.lBook__body--cover-wide .lBook__thumbnail-img {
+    height: auto;
+}
+.lBook__body--cover-wide .lBook__thumbnail-img img {
+    width: 100%;
+    height: auto;
+    max-height: 44vh;
+    object-fit: contain;
+}
+.lBook__body--cover-wide .lBook__content {
+    flex: 1;
+    padding-top: 3vh;
+    overflow-y: auto;
+}
+
+/* ── 다이어그램 (ERD + Use Case 한 페이지) ── */
+.lBook__diagrams {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5vh;
+    height: 100%;
+}
+.lBook__diagram-item {
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+}
+.lBook__diagram-img {
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
+    border-radius: 4px;
+    border: 1px solid #ece8e0;
+    background: #f5f3ee;
+}
+body.dark-mode .lBook__diagram-img { border-color: #444; background: #333; }
+.lBook__diagram-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+/* ── 화면 설명 ── */
+.lBook__screen {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+.lBook__screen-img {
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
+    border-radius: 6px;
+    border: 1px solid #ece8e0;
+    background: #f5f3ee;
+}
+body.dark-mode .lBook__screen-img { border-color: #444; background: #333; }
+.lBook__screen-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+.lBook__screen-title {
+    font-family: "Exo 2", sans-serif;
+    font-size: 2.1vh;
+    font-weight: 700;
+    color: #222;
+    margin: 1.5vh 0 0.5vh;
+}
+body.dark-mode .lBook__screen-title { color: #ddd; }
+.lBook__screen-desc {
+    font-family: "Pretendard Variable", sans-serif;
+    font-size: 1.7vh;
+    line-height: 1.65;
+    color: #666;
+    margin: 0;
+    word-break: keep-all;
+}
+body.dark-mode .lBook__screen-desc { color: #aaa; }
+
+/* ── Work 사진 (spread 왼쪽) ── */
+.lBook__work-photo {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+.lBook__work-photo img {
+    width: 100%;
+    flex: 1;
+    min-height: 0;
+    object-fit: cover;
+    border-radius: 6px;
+}
+.lBook__work-visit {
+    display: inline-block;
+    margin-top: 1.5vh;
+    font-family: "Exo 2", sans-serif;
+    font-size: 1.6vh;
+    font-weight: 600;
+    color: #555;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+.lBook__work-visit:hover {
+    color: var(--main-color-pink, #ff9ec4);
+}
+body.dark-mode .lBook__work-visit { color: #bbb; }
+.lBook__work-type {
+    display: inline-block;
+    font-family: "Exo 2", sans-serif;
+    font-size: 1.5vh;
+    font-weight: 600;
+    color: var(--main-color-pink, #ff9ec4);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 1vh;
+}
+
 /* ── Magazine (책 안 About) ── */
 .lBook__magazine {
     display: flex;
@@ -1229,6 +1364,9 @@ body.dark-mode .lBook__nav-item:hover { color: #fff; }
         column-gap: 3vw;
         padding: 3vh 3vh 3vh 0;
     }
+    .lBook__body--cover-wide {
+        padding: 3vh;
+    }
     .lBook__body--spread .lBook__page { padding: 4vh 3vw; }
     .lBook__nav-item--prev,
     .lBook__nav-item--next { display: none; }
@@ -1267,6 +1405,12 @@ body.dark-mode .lBook__nav-item:hover { color: #fff; }
     .lBook__body--cover {
         grid-template-columns: 1fr;
         padding: 2vh;
+    }
+    .lBook__body--cover-wide {
+        padding: 2vh;
+    }
+    .lBook__body--cover-wide .lBook__thumbnail-img img {
+        max-height: 30vh;
     }
     .lBook__body--spread {
         flex-direction: column;
